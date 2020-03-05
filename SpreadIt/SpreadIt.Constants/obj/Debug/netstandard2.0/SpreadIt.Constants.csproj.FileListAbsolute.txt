@@ -1,0 +1,8 @@
+E:\Junior\SpreadIt\SpreadIt.Constants\bin\Debug\netstandard2.0\SpreadIt.Constants.deps.json
+E:\Junior\SpreadIt\SpreadIt.Constants\bin\Debug\netstandard2.0\SpreadIt.Constants.dll
+E:\Junior\SpreadIt\SpreadIt.Constants\bin\Debug\netstandard2.0\SpreadIt.Constants.pdb
+E:\Junior\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.csprojAssemblyReference.cache
+E:\Junior\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.AssemblyInfoInputs.cache
+E:\Junior\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.AssemblyInfo.cs
+E:\Junior\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.dll
+E:\Junior\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.pdb

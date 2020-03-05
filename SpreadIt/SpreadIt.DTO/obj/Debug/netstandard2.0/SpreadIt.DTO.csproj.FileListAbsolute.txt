@@ -1,0 +1,8 @@
+E:\Junior\SpreadIt\SpreadIt.DTO\bin\Debug\netstandard2.0\SpreadIt.DTO.deps.json
+E:\Junior\SpreadIt\SpreadIt.DTO\bin\Debug\netstandard2.0\SpreadIt.DTO.dll
+E:\Junior\SpreadIt\SpreadIt.DTO\bin\Debug\netstandard2.0\SpreadIt.DTO.pdb
+E:\Junior\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.csprojAssemblyReference.cache
+E:\Junior\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.AssemblyInfoInputs.cache
+E:\Junior\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.AssemblyInfo.cs
+E:\Junior\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.dll
+E:\Junior\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.pdb
