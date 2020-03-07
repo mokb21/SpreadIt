@@ -11,7 +11,7 @@ namespace SpreadIt.Repository.Models
         [Required]
         [MaxLength(3000)]
         public string Text { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsBlocked { get; set; }
         public ICollection<CommentRate> CommentRates { get; set; }
         public ICollection<CommentReport> CommentReports { get; set; }
     }

@@ -102,5 +102,56 @@ namespace SpreadIt.Repository
             }
         }
         #endregion
+
+        #region Post
+        public Post GetPost(int id)
+        {
+            try
+            {
+                return _ctx.Posts.FirstOrDefault(e => e.Id == id);
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPost", Message = ex.Message });
+                return null;
+            }
+        }
+
+        public IQueryable<Post> GetPosts()
+        {
+            try
+            {
+                return _ctx.Posts;
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPosts", Message = ex.Message });
+                return null;
+            }
+        }
+
+        public RepositoryActionResult<Post> InsertPost(Post post)
+        {
+            try
+            {
+                _ctx.Posts.Add(post);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Post>(post, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Post>(post, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertPost", Message = ex.Message });
+                return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        #endregion
     }
 }

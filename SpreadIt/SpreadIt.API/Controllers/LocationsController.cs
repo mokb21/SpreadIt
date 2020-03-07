@@ -12,17 +12,18 @@ namespace SpreadIt.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LocationController : ControllerBase
+    public class LocationsController : ControllerBase
     {
         ISpreadItRepository _repository;
         LocationFactory _locationFactory = new LocationFactory();
 
-        public LocationController()
+        public LocationsController()
         {
             _repository = new SpreadItRepository(
                 new Repository.Models.SpreadItContext());
         }
 
+        [HttpGet]
         public IActionResult Get(int? id)
         {
             try
@@ -60,7 +61,7 @@ namespace SpreadIt.API.Controllers
                     if (result.Status == RepositoryActionStatus.Created)
                     {
                         var newlocation = _locationFactory.CreateLocation(result.Entity);
-                        return Created("api/Location/Get/" + newlocation.Id.ToString(),
+                        return Created("api/Location?id=" + newlocation.Id.ToString(),
                             newlocation);
                     }
                 }
@@ -76,6 +77,32 @@ namespace SpreadIt.API.Controllers
                     Method = "Post"
                 });
 
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = _repository.DeleteLocation(id);
+
+                if (result.Status == RepositoryActionStatus.Deleted)
+                    return NoContent();
+                else if (result.Status == RepositoryActionStatus.NotFound)
+                    return NotFound();
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                {
+                    Project = (byte)ProjectType.API,
+                    Message = ex.Message,
+                    Method = "Delete"
+                });
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

@@ -13,7 +13,7 @@ namespace SpreadIt.Repository.Models
         public DateTime? LastUpdatedDate { get; set; }
         [MaxLength(3000)]
         public string Description { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsBlocked { get; set; }
         public ICollection<Image> Images { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<PostRate> PostRates { get; set; }

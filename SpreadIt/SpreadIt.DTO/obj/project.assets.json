@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+      "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
       "projectName": "SpreadIt.DTO",
-      "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+      "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
       "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-      "outputPath": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\obj\\",
+      "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

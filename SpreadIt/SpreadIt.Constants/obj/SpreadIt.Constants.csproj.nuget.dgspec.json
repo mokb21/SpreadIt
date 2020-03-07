@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {}
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {}
   },
   "projects": {
-    "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
         "projectName": "SpreadIt.Constants",
-        "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\obj\\",
+        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

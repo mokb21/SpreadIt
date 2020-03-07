@@ -18,5 +18,11 @@ namespace SpreadIt.Repository
         Location GetLocation(int id);
         IQueryable<Location> GetLocations();
         #endregion
+
+        #region Posts
+        Post GetPost(int id);
+        IQueryable<Post> GetPosts();
+        RepositoryActionResult<Post> InsertPost(Post post);
+        #endregion
     }
 }

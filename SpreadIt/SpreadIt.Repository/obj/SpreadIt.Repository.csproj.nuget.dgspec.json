@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Junior\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {}
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {}
   },
   "projects": {
-    "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
         "projectName": "SpreadIt.Constants",
-        "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\obj\\",
+        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -62,14 +62,14 @@
         }
       }
     },
-    "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
         "projectName": "SpreadIt.DTO",
-        "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\obj\\",
+        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -120,14 +120,14 @@
         }
       }
     },
-    "E:\\Junior\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
+        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
         "projectName": "SpreadIt.Repository",
-        "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
+        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\SpreadIt\\SpreadIt.Repository\\obj\\",
+        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -146,11 +146,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
-                "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj"
+              "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+                "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj"
               },
-              "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
-                "projectPath": "E:\\Junior\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj"
+              "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
+                "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj"
               }
             }
           }
