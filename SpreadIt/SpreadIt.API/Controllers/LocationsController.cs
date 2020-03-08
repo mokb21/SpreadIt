@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using SpreadIt.Constants;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
@@ -17,13 +16,11 @@ namespace SpreadIt.API.Controllers
     {
         ISpreadItRepository _repository;
         LocationFactory _locationFactory = new LocationFactory();
-        readonly LinkGenerator _linkGenerator;
 
-        public LocationsController(LinkGenerator linkGenerator)
+        public LocationsController()
         {
             _repository = new SpreadItRepository(
                 new Repository.Models.SpreadItContext());
-            _linkGenerator = linkGenerator;
         }
 
         [HttpGet]
@@ -64,15 +61,6 @@ namespace SpreadIt.API.Controllers
                     if (result.Status == RepositoryActionStatus.Created)
                     {
                         var newlocation = _locationFactory.CreateLocation(result.Entity);
-                        var newLocationLink = _linkGenerator.GetPathByAction(
-                            HttpContext,
-                            action: "Get",
-                            controller: "Location",
-                            values: new
-                            {
-                                id = newlocation.Id
-                            });
-
                         return Created("api/Location?id=" + newlocation.Id.ToString(),
                             newlocation);
                     }

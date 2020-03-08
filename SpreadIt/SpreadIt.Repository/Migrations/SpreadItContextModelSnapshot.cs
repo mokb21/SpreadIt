@@ -182,12 +182,6 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
                     b.ToTable("Posts");

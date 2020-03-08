@@ -19,9 +19,7 @@ namespace SpreadIt.Repository.Factories
                 Id = post.Id,
                 CreatedDate = post.CreatedDate,
                 LastUpdatedDate = post.LastUpdatedDate,
-                Description = post.Description,
-                Latitude = post.Latitude,
-                Longitude = post.Longitude
+                Description = post.Description
             };
         }
 
@@ -32,9 +30,7 @@ namespace SpreadIt.Repository.Factories
             return new Post()
             {
                 Id = post.Id,
-                Description = post.Description,
-                Latitude = post.Latitude,
-                Longitude = post.Longitude
+                Description = post.Description
             };
         }
     }
