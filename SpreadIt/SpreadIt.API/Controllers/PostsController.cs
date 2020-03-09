@@ -29,7 +29,7 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int? id, string sort = "CreatedDate",
+        public IActionResult Get(int? id, string sort = "CreatedDate", string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
@@ -39,9 +39,16 @@ namespace SpreadIt.API.Controllers
                         _repository.GetPost(id.Value)));
                 else
                 {
+
+                    List<string> lstOfFields = new List<string>();
+                    if (fields != null)
+                    {
+                        lstOfFields = fields.ToLower().Split(',').ToList();
+                    }
+
                     var posts = _repository.GetPosts()
                                     .ApplySort(sort)
-                                    .Select(a => _postFactory.CreatePost(a));
+                                    .Select(a => _postFactory.CreateDataShapedObject(a, lstOfFields));
 
                     var totalCount = posts.Count();
                     var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
@@ -55,7 +62,8 @@ namespace SpreadIt.API.Controllers
                         {
                             page = page - 1,
                             pageSize = pageSize,
-                            sort = sort
+                            sort = sort,
+                            fields = fields
                         }) : "";
 
                     var nextLink = page < totalPages ? _linkGenerator.GetPathByAction(
@@ -66,7 +74,8 @@ namespace SpreadIt.API.Controllers
                         {
                             page = page + 1,
                             pageSize = pageSize,
-                            sort = sort
+                            sort = sort,
+                            fields = fields
                         }) : "";
 
                     var paginationHeader = new
@@ -102,15 +111,15 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] DTO.Post post, int? locationId)
+        public IActionResult Post([FromBody] DTO.Post post)
         {
             try
             {
                 if (post != null)
                 {
-                    if (locationId.HasValue)
+                    if (post.LocationId.HasValue)
                     {
-                        var location = _repository.GetLocation(locationId.Value);
+                        var location = _repository.GetLocation(post.LocationId.Value);
                         if (location != null)
                         {
                             post.Longitude = location.Longitude;
