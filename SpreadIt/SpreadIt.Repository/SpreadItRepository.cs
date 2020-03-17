@@ -121,7 +121,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts;
+                return _ctx.Posts.Where(a => !a.IsDeleted);
             }
             catch (Exception ex)
             {

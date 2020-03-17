@@ -5,17 +5,11 @@ using System.Text;
 
 namespace SpreadIt.Repository.Models
 {
-    public partial class Location
+    public class Category
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(200)]
+        [MaxLength(3000)]
         public string Name { get; set; }
-        [Required]
-        public double Longitude { get; set; }
-        [Required]
-        public double Latitude { get; set; }
-        [Required]
-        public double Range { get; set; }
     }
 }

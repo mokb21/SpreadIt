@@ -117,15 +117,15 @@ namespace SpreadIt.API.Controllers
             {
                 if (post != null)
                 {
-                    if (post.LocationId.HasValue)
-                    {
-                        var location = _repository.GetLocation(post.LocationId.Value);
-                        if (location != null)
-                        {
-                            post.Longitude = location.Longitude;
-                            post.Latitude = location.Latitude;
-                        }
-                    }
+                    //if (post.LocationId.HasValue)
+                    //{
+                    //    var location = _repository.GetLocation(post.LocationId.Value);
+                    //    if (location != null)
+                    //    {
+                    //        post.Longitude = location.Longitude;
+                    //        post.Latitude = location.Latitude;
+                    //    }
+                    //}
                     var pos = _postFactory.CreatePost(post);
                     var result = _repository.InsertPost(pos);
 

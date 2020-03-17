@@ -14,6 +14,7 @@ namespace SpreadIt.Repository.Models
         [MaxLength(3000)]
         public string Description { get; set; }
         public bool IsBlocked { get; set; }
+        public bool IsDeleted { get; set; }
         [Required]
         public double Longitude { get; set; }
         [Required]
