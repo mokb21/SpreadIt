@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {}
+    "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {}
   },
   "projects": {
-    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+    "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "projectUniqueName": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
         "projectName": "SpreadIt.Constants",
-        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
-        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\obj\\",
+        "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,6 +41,12 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -62,20 +68,20 @@
         }
       }
     },
-    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
+    "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+        "projectUniqueName": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
         "projectName": "SpreadIt.DTO",
-        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
-        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\obj\\",
+        "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -99,6 +105,12 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -120,20 +132,20 @@
         }
       }
     },
-    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {
+    "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
+        "projectUniqueName": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
         "projectName": "SpreadIt.Repository",
-        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
-        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\obj\\",
+        "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -146,11 +158,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
-                "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj"
+              "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+                "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj"
               },
-              "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
-                "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj"
+              "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
+                "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj"
               }
             }
           }

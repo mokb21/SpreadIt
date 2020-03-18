@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpreadIt.Repository.Models
 {
-    public partial class Image
+    public partial class PostImage
     {
         public int Id { get; set; }
         [Required]

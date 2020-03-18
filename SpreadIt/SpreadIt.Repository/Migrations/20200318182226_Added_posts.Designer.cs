@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.Repository.Migrations
 {
     [DbContext(typeof(SpreadItContext))]
-    partial class SpreadItContextModelSnapshot : ModelSnapshot
+    [Migration("20200318182226_Added_posts")]
+    partial class Added_posts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,6 +114,28 @@ namespace SpreadIt.Repository.Migrations
                     b.ToTable("CommentReports");
                 });
 
+            modelBuilder.Entity("SpreadIt.Repository.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("SpreadIt.Repository.Models.Location", b =>
                 {
                     b.Property<int>("Id")
@@ -202,28 +226,6 @@ namespace SpreadIt.Repository.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("SpreadIt.Repository.Models.PostImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<int?>("PostId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("PostImages");
-                });
-
             modelBuilder.Entity("SpreadIt.Repository.Models.PostRate", b =>
                 {
                     b.Property<int>("Id")
@@ -295,18 +297,18 @@ namespace SpreadIt.Repository.Migrations
                         .HasForeignKey("CommentId");
                 });
 
+            modelBuilder.Entity("SpreadIt.Repository.Models.Image", b =>
+                {
+                    b.HasOne("SpreadIt.Repository.Models.Post", null)
+                        .WithMany("Images")
+                        .HasForeignKey("PostId");
+                });
+
             modelBuilder.Entity("SpreadIt.Repository.Models.Post", b =>
                 {
                     b.HasOne("SpreadIt.Repository.Models.Category", null)
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId");
-                });
-
-            modelBuilder.Entity("SpreadIt.Repository.Models.PostImage", b =>
-                {
-                    b.HasOne("SpreadIt.Repository.Models.Post", null)
-                        .WithMany("PostImages")
-                        .HasForeignKey("PostId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.PostRate", b =>

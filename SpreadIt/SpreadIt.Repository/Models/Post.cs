@@ -19,7 +19,7 @@ namespace SpreadIt.Repository.Models
         public double Longitude { get; set; }
         [Required]
         public double Latitude { get; set; }
-        public ICollection<Image> Images { get; set; }
+        public ICollection<PostImage> PostImages { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<PostRate> PostRates { get; set; }
         public ICollection<PostReport> PostReports { get; set; }

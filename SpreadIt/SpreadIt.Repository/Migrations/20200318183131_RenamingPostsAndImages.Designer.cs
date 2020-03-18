@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.Repository.Migrations
 {
     [DbContext(typeof(SpreadItContext))]
-    partial class SpreadItContextModelSnapshot : ModelSnapshot
+    [Migration("20200318183131_RenamingPostsAndImages")]
+    partial class RenamingPostsAndImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,7 +223,7 @@ namespace SpreadIt.Repository.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("PostImages");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.PostRate", b =>
@@ -305,7 +307,7 @@ namespace SpreadIt.Repository.Migrations
             modelBuilder.Entity("SpreadIt.Repository.Models.PostImage", b =>
                 {
                     b.HasOne("SpreadIt.Repository.Models.Post", null)
-                        .WithMany("PostImages")
+                        .WithMany("Images")
                         .HasForeignKey("PostId");
                 });
 

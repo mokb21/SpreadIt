@@ -11,5 +11,7 @@ namespace SpreadIt.Repository.Models
         [Required]
         [MaxLength(3000)]
         public string Name { get; set; }
+
+        public ICollection<Post> Posts { get; set; }
     }
 }
