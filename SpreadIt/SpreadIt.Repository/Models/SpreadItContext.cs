@@ -12,6 +12,12 @@ namespace SpreadIt.Repository.Models
 
         }
 
+        public SpreadItContext(DbContextOptions<SpreadItContext> options)
+            : base(options) 
+        {
+        
+        }
+
         public DbSet<MessageLog> MessageLogs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Location> Locations { get; set; }
