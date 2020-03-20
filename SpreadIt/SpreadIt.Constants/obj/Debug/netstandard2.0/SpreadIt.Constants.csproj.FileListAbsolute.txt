@@ -14,3 +14,10 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.AssemblyInfo.cs
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\bin\Debug\netstandard2.0\SpreadIt.Constants.deps.json
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\bin\Debug\netstandard2.0\SpreadIt.Constants.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\bin\Debug\netstandard2.0\SpreadIt.Constants.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.AssemblyInfoInputs.cache
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.AssemblyInfo.cs
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.pdb

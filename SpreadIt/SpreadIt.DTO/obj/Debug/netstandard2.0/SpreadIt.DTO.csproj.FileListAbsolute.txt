@@ -14,3 +14,11 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\Spr
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.AssemblyInfo.cs
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\bin\Debug\netstandard2.0\SpreadIt.DTO.deps.json
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\bin\Debug\netstandard2.0\SpreadIt.DTO.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\bin\Debug\netstandard2.0\SpreadIt.DTO.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.AssemblyInfoInputs.cache
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.AssemblyInfo.cs
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.DTO\obj\Debug\netstandard2.0\SpreadIt.DTO.csprojAssemblyReference.cache
