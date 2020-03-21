@@ -9,6 +9,6 @@ namespace SpreadIt.Constants
         public const string ConnectionString = "Server=LAPTOP-KPV88GOU;Database=SpreadIt;user id=sa;password=sql2018;multipleactiveresultsets=True";
         //public const string ConnectionString = "Server=sql6009.site4now.net;Database=DB_A43263_spreaditDB;User id = DB_A43263_spreaditDB_admin;Password=spreadit123456;multipleactiveresultsets=True";
 
-        public const string IdSrvIssuerURI = "https://localhost:44360/embedded";
+        public const string IdSrvURI = "https://localhost:44347/";
     }
 }

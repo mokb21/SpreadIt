@@ -1,61 +1,59 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using SpreadIt.IdSrv.Config;
 
 namespace SpreadIt.IdSrv
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IWebHostEnvironment Environment { get; }
+
+        public Startup(IWebHostEnvironment environment)
         {
-            Configuration = configuration;
+            Environment = environment;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // uncomment, if you want to add an MVC-based UI
+            services.AddControllersWithViews();
 
-            services.AddIdentityServer()
-                .AddInMemoryClients(Clients.Get())
-                .AddInMemoryIdentityResources(Resources.Get())
-                //.AddInMemoryApiResources(new List<ApiResource>())
-                .AddTestUsers(Users.Get())
-                .AddDeveloperSigningCredential();
+            services.AddMvc();
+
+            var builder = services.AddIdentityServer()
+                .AddInMemoryIdentityResources(Config.Ids)
+                .AddInMemoryApiResources(Config.Apis)
+                .AddInMemoryClients(Config.Clients)
+                .AddTestUsers(Config.Users);
+
+            // not recommended for production - you need to store your key material somewhere secure
+            builder.AddDeveloperSigningCredential();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
+            // uncomment if you want to add MVC
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseIdentityServer();
 
+            // uncomment, if you want to add MVC
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
             });
-
-            app.UseIdentityServer();
         }
     }
 }
