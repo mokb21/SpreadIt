@@ -26,6 +26,20 @@ namespace SpreadIt.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "cookie";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("cookie")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.Authority = Constants.SpreadItConstants.IdSrvURI;
+                options.ClientId = "oauthClient";
+                options.SignInScheme = "cookie";
+                options.Resource = "";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
