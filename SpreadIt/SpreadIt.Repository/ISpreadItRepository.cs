@@ -1,8 +1,6 @@
 ﻿using SpreadIt.Repository.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SpreadIt.Repository
 {
@@ -23,6 +21,15 @@ namespace SpreadIt.Repository
         Post GetPost(int id);
         IQueryable<Post> GetPosts();
         RepositoryActionResult<Post> InsertPost(Post post);
+        RepositoryActionResult<Post> UpdatePost(Post post);
+        #endregion
+
+        #region
+        List<Comment> GetCommentByPost(int id);
+        RepositoryActionResult<Comment> InsertComment(Comment comment);
+        RepositoryActionResult<Comment> UpdateComment(Comment comment);
+        RepositoryActionResult<Comment> DeleteComment(int id);
+
         #endregion
     }
 }

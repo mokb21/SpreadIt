@@ -134,7 +134,7 @@ namespace SpreadIt.API.Controllers
                         var newPost = _postFactory.CreatePost(result.Entity);
                         var newPostLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Get",
+                        action: "Post",
                         controller: "Posts",
                         values: new
                         {
@@ -154,6 +154,49 @@ namespace SpreadIt.API.Controllers
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
                     Method = "Post"
+                });
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        } 
+
+        [HttpPut]
+        public IActionResult PutComment([FromBody] DTO.Post post)
+        {
+            try
+            {
+                if (post != null && !post.Id.Equals(0))
+                {
+                    var pos = _postFactory.CreatePost(post);
+                    var result = _repository.UpdatePost(pos);
+
+                    if (result.Status == RepositoryActionStatus.Updated)
+                    {
+                        var newPost = _postFactory.CreatePost(result.Entity);
+                        var newPostLink = _linkGenerator.GetPathByAction(
+                        HttpContext,
+                        action: "PutComment",
+                        controller: "Posts",
+                        values: new
+                        {
+                            id = newPost.Id
+                        });
+
+                        return Created(newPostLink, newPost);
+                    }
+                    else
+                        return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+                else
+                    return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                {
+                    Project = (byte)ProjectType.API,
+                    Message = ex.Message,
+                    Method = "Put"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

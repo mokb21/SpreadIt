@@ -151,6 +151,113 @@ namespace SpreadIt.Repository
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertPost", Message = ex.Message });
                 return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
             }
+        } 
+        public RepositoryActionResult<Post> UpdatePost(Post post)
+        {
+            try
+            {
+                _ctx.Posts.Update(post);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Post>(post, RepositoryActionStatus.Updated);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Post>(post, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "UpdatePost", Message = ex.Message });
+                return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        #endregion
+
+
+        #region Comment
+        public List<Comment> GetCommentByPost(int PostId)
+        {
+            try
+            {
+                return _ctx.Comments.Where(a => a.PostId == PostId).ToList();
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetCommentByPost", Message = ex.Message });
+                return null;
+            }
+        }
+     
+        public RepositoryActionResult<Comment> InsertComment(Comment comment)
+        {
+            try
+            {
+                _ctx.Comments.Add(comment);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertComment", Message = ex.Message });
+                return new RepositoryActionResult<Comment>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Comment> UpdateComment(Comment comment)
+        {
+            try
+            {
+                _ctx.Comments.Update(comment);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.Updated);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertComment", Message = ex.Message });
+                return new RepositoryActionResult<Comment>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Comment> DeleteComment(int id)
+        {
+            try
+            {
+                var comment = _ctx.Comments.Find(id);
+                _ctx.Comments.Remove(comment);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.Deleted);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.NothingModified, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "DeleteComment", Message = ex.Message });
+                return new RepositoryActionResult<Comment>(null, RepositoryActionStatus.Error, ex);
+            }
         }
         #endregion
     }
