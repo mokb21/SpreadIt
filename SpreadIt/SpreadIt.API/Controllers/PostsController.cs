@@ -9,9 +9,11 @@ using SpreadIt.Constants;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
 using SpreadIt.API.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SpreadIt.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostsController : ControllerBase

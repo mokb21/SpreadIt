@@ -398,4 +398,5 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Micr
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.MvcApplicationPartsAssemblyInfo.cache
