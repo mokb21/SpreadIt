@@ -27,21 +27,6 @@ namespace SpreadIt.API
         {
             services.AddControllers();
 
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultScheme = "cookie";
-            //    options.DefaultChallengeScheme = "oidc";
-            //})
-            //.AddCookie("cookie")
-            //.AddOpenIdConnect("oidc", options =>
-            //{
-            //    options.Authority = Constants.SpreadItConstants.IdSrvURI;
-            //    options.ClientId = "oauthClient";
-            //    options.SignInScheme = "cookie";
-            //    options.Scope.Add("spreadItAPI.read");
-            //    options.Scope.Add("spreadItAPI.write");
-            //});
-
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {

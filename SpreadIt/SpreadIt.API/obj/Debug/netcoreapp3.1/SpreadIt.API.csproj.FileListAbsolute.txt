@@ -270,6 +270,8 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Spre
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\SpreadIt.API.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\SpreadIt.API.pdb
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -296,6 +298,11 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Micr
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -313,6 +320,7 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Syst
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Linq.Dynamic.Core.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
@@ -383,6 +391,8 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Spre
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\SpreadIt.DTO.pdb
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\SpreadIt.Repository.pdb
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.csprojAssemblyReference.cache
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.csproj.CoreCompileInputs.cache
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.MvcApplicationPartsAssemblyInfo.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.AssemblyInfoInputs.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.AssemblyInfo.cs
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.RazorTargetAssemblyInfo.cache
@@ -391,12 +401,4 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\stat
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\staticwebassets\SpreadIt.API.StaticWebAssets.xml
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.pdb
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.MvcApplicationPartsAssemblyInfo.cache
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.genruntimeconfig.cache

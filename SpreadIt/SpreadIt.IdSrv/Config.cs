@@ -44,7 +44,7 @@ namespace SpreadIt.IdSrv
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = new List<string> {
                         "spreadItAPI"
-                    }
+                    },
                 },
             };
 
