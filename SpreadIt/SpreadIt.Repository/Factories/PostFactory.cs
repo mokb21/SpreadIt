@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using SpreadIt.Repository;
 
 namespace SpreadIt.Repository.Factories
 {
     public class PostFactory
     {
+        PostImagesFactory _imageFactory;
+        CategoryFactory _CategoryFactory;
         public PostFactory()
         {
-
+             _imageFactory = new PostImagesFactory();
+             _CategoryFactory = new CategoryFactory();
         }
-
+       
         public DTO.Post CreatePost(Post post)
         {
             return new DTO.Post()
@@ -24,10 +27,14 @@ namespace SpreadIt.Repository.Factories
                 LastUpdatedDate = post.LastUpdatedDate,
                 Description = post.Description,
                 Latitude = post.Latitude,
-                Longitude = post.Longitude
+                Longitude = post.Longitude,
+                CategoryId = post.CategoryId,
+                IsBlocked = post.IsBlocked,
+                IsDeleted = post.IsDeleted,
+                PostImages = post.PostImages?.Select(element => _imageFactory.CreatePostImage(element)).ToList(),
+                Category = _CategoryFactory.CreateCategory(post.Category)
             };
         }
-
 
 
         public Post CreatePost(DTO.Post post)
@@ -37,7 +44,10 @@ namespace SpreadIt.Repository.Factories
                 Id = post.Id,
                 Description = post.Description,
                 Latitude = post.Latitude,
-                Longitude = post.Longitude
+                Longitude = post.Longitude,
+                CategoryId = post.CategoryId,
+                IsBlocked = post.IsBlocked,
+                IsDeleted = post.IsDeleted
             };
         }
 

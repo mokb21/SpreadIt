@@ -1052,6 +1052,16 @@
         "compile": {
           "ref/netstandard1.2/System.Threading.Timer.dll": {}
         }
+      },
+      "SpreadIt.Constants/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/SpreadIt.Constants.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpreadIt.Constants.dll": {}
+        }
       }
     }
   },
@@ -1808,7 +1818,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
+      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -3743,33 +3753,39 @@
         "system.threading.timer.4.0.1.nupkg.sha512",
         "system.threading.timer.nuspec"
       ]
+    },
+    "SpreadIt.Constants/1.0.0": {
+      "type": "project",
+      "path": "../SpreadIt.Constants/SpreadIt.Constants.csproj",
+      "msbuildProject": "../SpreadIt.Constants/SpreadIt.Constants.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "IdentityServer4 >= 3.1.0",
       "Serilog.AspNetCore >= 3.2.0",
+      "SpreadIt.Constants >= 1.0.0",
       "System.Security.Principal.Windows >= 4.7.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MHD\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj",
+      "projectUniqueName": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj",
       "projectName": "SpreadIt.IdSrv",
-      "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj",
-      "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-      "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\obj\\",
+      "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3781,7 +3797,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+              "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

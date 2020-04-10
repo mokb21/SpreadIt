@@ -12,5 +12,10 @@ namespace SpreadIt.DTO
         public string Description { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-    }
+        public int CategoryId { get; set; }
+        public bool IsBlocked { get; set; }
+        public bool IsDeleted { get; set; }
+        public List<PostImage> PostImages { get; set; }
+        public Category Category { get; set; }
+    }   
 }

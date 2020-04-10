@@ -1150,23 +1150,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MHD\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+      "projectUniqueName": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
       "projectName": "SpreadIt.DTO",
-      "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
-      "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-      "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\obj\\",
+      "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

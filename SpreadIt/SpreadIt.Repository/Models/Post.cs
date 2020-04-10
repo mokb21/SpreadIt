@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpreadIt.Repository.Models
 {
@@ -19,7 +20,12 @@ namespace SpreadIt.Repository.Models
         public double Longitude { get; set; }
         [Required]
         public double Latitude { get; set; }
-        public ICollection<PostImage> PostImages { get; set; }
+        [Required]
+        [ForeignKey("Category")]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        #nullable enable
+        public List<PostImage> PostImages { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<PostRate> PostRates { get; set; }
         public ICollection<PostReport> PostReports { get; set; }

@@ -24,12 +24,41 @@ namespace SpreadIt.Repository
         RepositoryActionResult<Post> UpdatePost(Post post);
         #endregion
 
-        #region
+        #region Comments
         List<Comment> GetCommentByPost(int id);
         RepositoryActionResult<Comment> InsertComment(Comment comment);
         RepositoryActionResult<Comment> UpdateComment(Comment comment);
         RepositoryActionResult<Comment> DeleteComment(int id);
+        #endregion Comments
 
+        #region Categories
+        IQueryable<Category> GetCategories();
+        RepositoryActionResult<Category> InsertCategory(Category category);
+        RepositoryActionResult<Category> UpdateCategory(Category category);
+        RepositoryActionResult<Category> DeleteCategory(int id);
+        #endregion Categories
+
+        #region Post Reports
+        IQueryable<PostReport> GetPostReports();
+        IQueryable<PostReport> GetPostReportsByPostId(int PostId);
+        RepositoryActionResult<PostReport> InsertPostReport(PostReport postReport);
+        RepositoryActionResult<PostReport> ChangePostReportStatus(int id);
+        #endregion Post Reports
+
+        #region Comment Reports
+        public IQueryable<CommentReport> GetCommentReports();
+        public IQueryable<CommentReport> GetCommentReportsByCommentId(int CommentId);
+        public RepositoryActionResult<CommentReport> InsertCommentReport(CommentReport commentReport);
+        public RepositoryActionResult<CommentReport> ChangeCommentReportStatus(int id);
+        #endregion
+        #region Reports Categories
+        IQueryable<ReportCategory> GetReportCategories();
+        ReportCategory GetReportCategoryById(int id);
+        #endregion Reports Categories
+
+        #region Posts Images
+        RepositoryActionResult<PostImage> InsertImage(PostImage postImage);
+        List<PostImage> GetImagesByPost(int? PostId);
         #endregion
     }
 }

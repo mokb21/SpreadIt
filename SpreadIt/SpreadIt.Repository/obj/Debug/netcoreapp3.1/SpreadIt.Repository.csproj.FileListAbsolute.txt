@@ -13,21 +13,6 @@ E:\Junior\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Reposito
 E:\Junior\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.csproj.CopyComplete
 E:\Junior\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.dll
 E:\Junior\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.pdb
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.deps.json
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.runtimeconfig.json
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.runtimeconfig.dev.json
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.dll
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.pdb
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Constants.dll
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.DTO.dll
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Constants.pdb
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.DTO.pdb
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.csprojAssemblyReference.cache
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.AssemblyInfoInputs.cache
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.AssemblyInfo.cs
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.csproj.CopyComplete
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.dll
-D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.pdb
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.deps.json
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.runtimeconfig.json
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.runtimeconfig.dev.json
@@ -43,3 +28,18 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.csproj.CopyComplete
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.deps.json
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.runtimeconfig.json
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.runtimeconfig.dev.json
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Repository.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Constants.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.DTO.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.Constants.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\bin\Debug\netcoreapp3.1\SpreadIt.DTO.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.csprojAssemblyReference.cache
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.AssemblyInfoInputs.cache
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.AssemblyInfo.cs
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.csproj.CopyComplete
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Repository\obj\Debug\netcoreapp3.1\SpreadIt.Repository.pdb

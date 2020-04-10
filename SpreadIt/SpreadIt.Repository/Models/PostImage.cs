@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SpreadIt.Repository.Models
@@ -11,6 +12,8 @@ namespace SpreadIt.Repository.Models
         [Required]
         [MaxLength(200)]
         public string Path { get; set; }
-
+        [Required]
+        [ForeignKey("Post")]
+        public int PostId { get; set; }
     }
 }

@@ -28,6 +28,7 @@ namespace SpreadIt.Repository.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<CommentRate> CommentRates { get; set; }
         public DbSet<CommentReport> CommentReports { get; set; }
+        public DbSet<ReportCategory> ReportCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             base.OnConfiguring(optionsBuilder);
