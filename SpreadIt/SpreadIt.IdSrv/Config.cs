@@ -28,17 +28,7 @@ namespace SpreadIt.IdSrv
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource {
-                    Name = "spreadItAPI",
-                    DisplayName = "SpreadIt API",
-                    Description = "spreadIt API Access",
-                    UserClaims = new List<string> {"role"},
-                    ApiSecrets = new List<Secret> {new Secret("scopeSecret".Sha256())},
-                    Scopes = new List<Scope> {
-                        new Scope("spreadItAPI.read"),
-                        new Scope("spreadItAPI.write")
-                    }
-                }
+                new ApiResource("spreadItAPI", "SpreadIt API")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -47,26 +37,15 @@ namespace SpreadIt.IdSrv
                 new Client {
                     ClientId = "oauthClient",
                     ClientName = "Example Client Credentials Client Application",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = new List<Secret> {
-                        new Secret("superSecretPassword".Sha256())},
-                    AllowedScopes = new List<string> {"spreadItAPI.read"}
-                },
-                new Client {
-                    ClientId = "openIdConnectClient",
-                    ClientName = "Example Implicit Client Application",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowedScopes = new List<string>
+                    ClientSecrets =
                     {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email,
-                        "role",
-                        "spreadItAPI.write"
+                        new Secret("secret".Sha256())
                     },
-                    //RedirectUris = new List<string> {"https://localhost:44330/signin-oidc"},
-                    //PostLogoutRedirectUris = new List<string> {"https://localhost:44330"}
-                }
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes = new List<string> {
+                        "spreadItAPI"
+                    },
+                },
             };
 
         public static List<TestUser> Users =>

@@ -20,7 +20,7 @@ namespace SpreadIt.API
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;  
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,18 +30,13 @@ namespace SpreadIt.API
         {
             services.AddControllers();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "cookie";
-                options.DefaultChallengeScheme = "oidc";
-            })
-            .AddCookie("cookie")
-            .AddOpenIdConnect("oidc", options =>
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
             {
                 options.Authority = Constants.SpreadItConstants.IdSrvURI;
-                options.ClientId = "oauthClient";
-                options.SignInScheme = "cookie";
-                options.Resource = "";
+                options.RequireHttpsMetadata = false;
+
+                options.Audience = "spreadItAPI";
             });
             services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
@@ -66,6 +61,7 @@ namespace SpreadIt.API
             });
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
