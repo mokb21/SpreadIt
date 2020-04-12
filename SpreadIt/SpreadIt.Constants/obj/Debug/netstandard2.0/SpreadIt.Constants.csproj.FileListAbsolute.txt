@@ -22,3 +22,4 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.AssemblyInfo.cs
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.pdb
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.Constants\obj\Debug\netstandard2.0\SpreadIt.Constants.csprojAssemblyReference.cache

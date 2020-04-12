@@ -402,3 +402,11 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\stat
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.pdb
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.genruntimeconfig.cache
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Junior Project\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

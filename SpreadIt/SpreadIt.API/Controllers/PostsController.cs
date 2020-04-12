@@ -11,11 +11,13 @@ using SpreadIt.Repository.Factories;
 using SpreadIt.API.Helpers;
 using System.IO;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SpreadIt.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PostsController : ControllerBase
     {
         ISpreadItRepository _repository;
