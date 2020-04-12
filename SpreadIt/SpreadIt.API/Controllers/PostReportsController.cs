@@ -34,14 +34,19 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpGet]
-        public IActionResult GetPostsReports(int? PostId, string sort = "CreatedDate", string fields = null,
+        public IActionResult GetPostsReports(int? postId, string sort = "CreatedDate", string fields = null,
              int page = 1, int pageSize = 5)
         {
             try
             {
-                if (PostId.HasValue)
-                    return Ok(_repository.GetPostReportsByPostId(PostId.Value).
-                        Select(element => _PostReportFactory.CreatePostReport(element)));
+                if (postId.HasValue)
+                {
+                    var postReports = _repository.GetPostReportsByPostId(postId.Value);
+                    if (postReports == null)
+                        return NotFound();
+                    else
+                        return Ok(postReports.Select(element => _PostReportFactory.CreatePostReport(element)));
+                }
                 else
                 {
                     List<string> lstOfFields = new List<string>();

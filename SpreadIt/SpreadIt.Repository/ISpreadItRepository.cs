@@ -53,7 +53,7 @@ namespace SpreadIt.Repository
         #endregion
         #region Reports Categories
         IQueryable<ReportCategory> GetReportCategories();
-        ReportCategory GetReportCategoryById(int id);
+        ReportCategory GetReportCategory(int id);
         #endregion Reports Categories
 
         #region Posts Images

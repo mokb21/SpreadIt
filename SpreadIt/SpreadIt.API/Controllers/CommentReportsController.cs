@@ -30,14 +30,19 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCommentsReports(int? CommentId, string sort = "CreatedDate", string fields = null,
+        public IActionResult GetCommentsReports(int? commentId, string sort = "CreatedDate", string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
             {
-                if (CommentId.HasValue)
-                    return Ok(_repository.GetCommentReportsByCommentId(CommentId.Value).
-                        Select(element => _commentReportFactory.CreateCommentReport(element)));
+                if (commentId.HasValue)
+                {
+                    var commentReports = _repository.GetCommentReportsByCommentId(commentId.Value);
+                    if (commentReports == null)
+                        return NotFound();
+                    else
+                        return Ok(commentReports.Select(element => _commentReportFactory.CreateCommentReport(element)));
+                }
                 else
                 {
                     List<string> lstOfFields = new List<string>();

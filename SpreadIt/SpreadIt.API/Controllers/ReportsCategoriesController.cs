@@ -35,8 +35,13 @@ namespace SpreadIt.API.Controllers
             try
             {
                 if (id.HasValue)
-                    return Ok(_reportsCategoriesFactory.CreateReportCategory(
-                        _repository.GetReportCategoryById(id.Value)));
+                {
+                    var category = _repository.GetReportCategory(id.Value);
+                    if (category == null)
+                        return NotFound();
+                    else
+                        return Ok(_reportsCategoriesFactory.CreateReportCategory(category));
+                }
                 else
                     return Ok(_repository.GetReportCategories()
                         .Select(element => _reportsCategoriesFactory.CreateReportCategory(element)));

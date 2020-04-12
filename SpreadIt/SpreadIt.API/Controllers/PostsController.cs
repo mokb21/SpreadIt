@@ -41,9 +41,11 @@ namespace SpreadIt.API.Controllers
             {
                 if (id.HasValue)
                 {
-                    var post = _postFactory.CreatePost(
-                        _repository.GetPost(id.Value));
-                    return Ok(post);
+                    var post = _repository.GetPost(id.Value);
+                    if (post == null)
+                        return NotFound();
+                    else
+                        return Ok(_postFactory.CreatePost(post));
                 }
                 else
                 {

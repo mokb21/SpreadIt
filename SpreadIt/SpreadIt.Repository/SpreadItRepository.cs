@@ -506,7 +506,7 @@ namespace SpreadIt.Repository
                 return null;
             }
         }
-        public ReportCategory GetReportCategoryById(int id)
+        public ReportCategory GetReportCategory(int id)
         {
             try
             {

@@ -34,8 +34,13 @@ namespace SpreadIt.API.Controllers
             try
             {
                 if (id.HasValue)
-                    return Ok(_locationFactory.CreateLocation(
-                        _repository.GetLocation(id.Value)));
+                {
+                    var location = _repository.GetLocation(id.Value);
+                    if (location == null)
+                        return NotFound();
+                    else
+                        return Ok(_locationFactory.CreateLocation(location));
+                }
                 else
                     return Ok(_repository.GetLocations()
                         .Select(a => _locationFactory.CreateLocation(a)));
