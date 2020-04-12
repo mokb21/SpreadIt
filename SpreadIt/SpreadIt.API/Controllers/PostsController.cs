@@ -12,12 +12,12 @@ using SpreadIt.API.Helpers;
 using System.IO;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpreadIt.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class PostsController : ControllerBase
     {
         ISpreadItRepository _repository;
@@ -33,14 +33,14 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int? id, string sort = "CreatedDate", 
+        public IActionResult Get(int? id, string sort = "CreatedDate",
             string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
             {
                 if (id.HasValue)
-                { 
+                {
                     var post = _postFactory.CreatePost(
                         _repository.GetPost(id.Value));
                     return Ok(post);
@@ -58,10 +58,9 @@ namespace SpreadIt.API.Controllers
 
                     var posts = _repository.GetPosts();
 
-                    var factorizedPosts = posts.ApplySort(sort)
-                                    .Select(a => _postFactory.CreateDataShapedObject(a, lstOfFields));
+                    posts = posts.ApplySort(sort);
 
-                    var totalCount = factorizedPosts.Count();
+                    var totalCount = posts.Count();
                     var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
 
 
@@ -103,9 +102,10 @@ namespace SpreadIt.API.Controllers
                         Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
 
 
-                    return Ok(factorizedPosts
+                    return Ok(posts
                             .Skip(pageSize * (page - 1))
-                            .Take(pageSize));
+                            .Take(pageSize).ToList()
+                            .Select(a => _postFactory.CreateDataShapedObject(a, lstOfFields)));
                 }
             }
             catch (Exception ex)
@@ -125,7 +125,7 @@ namespace SpreadIt.API.Controllers
         public IActionResult Post([FromForm] DTO.Post post)
         {
             try
-            {          
+            {
                 if (post != null && !post.CategoryId.Equals(0))
                 {
                     var pos = _postFactory.CreatePost(post);
@@ -153,7 +153,7 @@ namespace SpreadIt.API.Controllers
                                 Path = dbPath,
                                 PostId = pos.Id
                             };
-                        
+
                             var image = _imageFactory.CreatePostImage(PostImage);
                             var ImageResult = _repository.InsertImage(image);
 
@@ -178,7 +178,7 @@ namespace SpreadIt.API.Controllers
                     else
                         return StatusCode(StatusCodes.Status500InternalServerError);
                 }
-                else 
+                else
                     return BadRequest();
             }
             catch (Exception ex)

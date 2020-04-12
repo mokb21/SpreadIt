@@ -14,10 +14,10 @@ namespace SpreadIt.Repository.Factories
         CategoryFactory _CategoryFactory;
         public PostFactory()
         {
-             _imageFactory = new PostImagesFactory();
-             _CategoryFactory = new CategoryFactory();
+            _imageFactory = new PostImagesFactory();
+            _CategoryFactory = new CategoryFactory();
         }
-       
+
         public DTO.Post CreatePost(Post post)
         {
             return new DTO.Post()
