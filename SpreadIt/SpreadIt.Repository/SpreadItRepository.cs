@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using SpreadIt.Constants;
 using SpreadIt.Repository.Models;
 
@@ -108,7 +109,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.FirstOrDefault(e => e.Id == id);
+                return _ctx.Posts.Include(post => post.PostImages).Include(post => post.Category).FirstOrDefault(e => e.Id == id);
             }
             catch (Exception ex)
             {
@@ -121,7 +122,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Where(a => !a.IsDeleted);
+                return _ctx.Posts.Where(a => !a.IsDeleted).Where(a => !a.IsBlocked).Include(a => a.Category).Include(a => a.PostImages);
             }
             catch (Exception ex)
             {
@@ -138,7 +139,8 @@ namespace SpreadIt.Repository
                 var result = _ctx.SaveChanges();
                 if (result > 0)
                 {
-                    return new RepositoryActionResult<Post>(post, RepositoryActionStatus.Created);
+                    var AddedPost = _ctx.Posts.Include(post => post.Category).FirstOrDefault(element => element.Id.Equals(post.Id));
+                    return new RepositoryActionResult<Post>(AddedPost, RepositoryActionStatus.Created);
                 }
                 else
                 {
@@ -176,13 +178,12 @@ namespace SpreadIt.Repository
         }
         #endregion
 
-
         #region Comment
         public List<Comment> GetCommentByPost(int PostId)
         {
             try
             {
-                return _ctx.Comments.Where(a => a.PostId == PostId).ToList();
+                return _ctx.Comments.Where(a => a.PostId == PostId).Where(a => a.IsBlocked.Equals(false)).Where(a => a.IsDeleted.Equals(false)).ToList();
             }
             catch (Exception ex)
             {
@@ -257,6 +258,300 @@ namespace SpreadIt.Repository
             {
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "DeleteComment", Message = ex.Message });
                 return new RepositoryActionResult<Comment>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        #endregion
+
+        #region Categories
+        public IQueryable<Category> GetCategories()
+        {
+            try
+            {
+                return _ctx.Categories;
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetCategories", Message = ex.Message });
+                return null;
+            }
+        }
+
+        public RepositoryActionResult<Category> InsertCategory(Category category)
+        {
+            try
+            {
+                _ctx.Categories.Add(category);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertCategory", Message = ex.Message });
+                return new RepositoryActionResult<Category>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Category> UpdateCategory(Category category)
+        {
+            try
+            {
+                _ctx.Categories.Update(category);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.Updated);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "UpdateCategory", Message = ex.Message });
+                return new RepositoryActionResult<Category>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Category> DeleteCategory(int id)
+        {
+            try
+            {
+                var category = _ctx.Categories.Find(id);
+                _ctx.Categories.Remove(category);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.Deleted);
+                }
+                else
+                {
+                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.NothingModified, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "DeleteCategory", Message = ex.Message });
+                return new RepositoryActionResult<Category>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        #endregion Categories
+
+        #region Post Reprots
+        public IQueryable<PostReport> GetPostReports()
+        {
+            try
+            {
+                return _ctx.PostReports.Where(element => element.IsActive.Equals(true));
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPostReports", Message = ex.Message });
+                return null;
+            }
+        }  
+        
+        public IQueryable<PostReport> GetPostReportsByPostId(int PostId)
+        {
+            try
+            {
+                return _ctx.PostReports.Where(element => element.PostId.Equals(PostId));
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPostReportsByPostId", Message = ex.Message });
+                return null;
+            }
+        }
+        public RepositoryActionResult<PostReport> InsertPostReport(PostReport postReport)
+        {
+            try
+            {
+                _ctx.PostReports.Add(postReport);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<PostReport>(postReport, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<PostReport>(postReport, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertPostReport", Message = ex.Message });
+                return new RepositoryActionResult<PostReport>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        public RepositoryActionResult<PostReport> ChangePostReportStatus(int id)
+        {
+            try
+            {
+                _ctx.PostReports.Where(element => element.Id.Equals(id))
+                    .Select(element => element.IsActive == !element.IsActive);
+                var result = _ctx.SaveChanges();
+                var updatedPostReprot = _ctx.PostReports.FirstOrDefault(element => element.Id.Equals(id));
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<PostReport>(updatedPostReprot, RepositoryActionStatus.Updated);
+                }
+                else
+                {
+                    return new RepositoryActionResult<PostReport>(updatedPostReprot, RepositoryActionStatus.NothingModified, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "ChangePostReportStatus", Message = ex.Message });
+                return null;
+            }
+        }
+        #endregion Post Reprots
+
+        #region Comment Reports
+        public IQueryable<CommentReport> GetCommentReports()
+        {
+            try
+            {
+                return _ctx.CommentReports;
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetCommentReports", Message = ex.Message });
+                return null;
+            }
+        }
+        public IQueryable<CommentReport> GetCommentReportsByCommentId(int CommentId)
+        {
+            try
+            {
+                return _ctx.CommentReports.Where(element => element.CommentId.Equals(CommentId)).Where(element => element.IsActive.Equals(true));
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetCommentReportsByCommentId", Message = ex.Message });
+                return null;
+            }
+        }
+        public RepositoryActionResult<CommentReport> InsertCommentReport(CommentReport commentReport)
+        {
+            try
+            {
+                _ctx.CommentReports.Add(commentReport);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<CommentReport>(commentReport, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<CommentReport>(commentReport, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertCommentReport", Message = ex.Message });
+                return new RepositoryActionResult<CommentReport>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        public RepositoryActionResult<CommentReport> ChangeCommentReportStatus(int id)
+        {
+            try
+            {
+                _ctx.CommentReports.Where(element => element.Id.Equals(id))
+                    .Select(element => element.IsActive == !element.IsActive);
+                var result = _ctx.SaveChanges();
+                var updatedCommentReprot = _ctx.CommentReports.FirstOrDefault(element => element.Id.Equals(id));
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<CommentReport>(updatedCommentReprot, RepositoryActionStatus.Updated);
+                }
+                else
+                {
+                    return new RepositoryActionResult<CommentReport>(updatedCommentReprot, RepositoryActionStatus.NothingModified, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "ChangeCommentReportStatus", Message = ex.Message });
+                return null;
+            }
+        }
+        #endregion
+
+        #region Reports Categories
+        public IQueryable<ReportCategory> GetReportCategories()
+        {
+            try
+            {
+                return _ctx.ReportCategories;
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetReportCategories", Message = ex.Message });
+                return null;
+            }
+        } 
+        public ReportCategory GetReportCategoryById(int id)
+        {
+            try
+            {
+                return _ctx.ReportCategories.FirstOrDefault(element => element.Id.Equals(id));
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetReportCategoryById", Message = ex.Message });
+                return null;
+            }
+        }
+        #endregion Reports Categories
+
+        #region Posts Images
+        public RepositoryActionResult<PostImage> InsertImage(PostImage postImage)
+        {
+            try
+            {
+                _ctx.PostImages.Add(postImage);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<PostImage>(postImage, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<PostImage>(postImage, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertImage", Message = ex.Message });
+                return new RepositoryActionResult<PostImage>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public List<PostImage> GetImagesByPost(int? PostId)
+        {
+            try
+            {
+                return _ctx.PostImages.Where(a => a.PostId.Equals(PostId)).ToList();
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetImagesByPost", Message = ex.Message });
+                return null;
             }
         }
         #endregion

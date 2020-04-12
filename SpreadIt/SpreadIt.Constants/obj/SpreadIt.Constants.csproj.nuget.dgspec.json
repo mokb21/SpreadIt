@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {}
+    "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {}
   },
   "projects": {
-    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+    "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "projectUniqueName": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
         "projectName": "SpreadIt.Constants",
-        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
-        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\obj\\",
+        "projectPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\Junior Project\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

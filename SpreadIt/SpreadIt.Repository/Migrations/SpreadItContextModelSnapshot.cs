@@ -49,7 +49,7 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -91,19 +91,21 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommentId")
+                    b.Property<int>("CommentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(3000)")
                         .HasMaxLength(3000);
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                    b.Property<int>("ReportCategoryId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -170,7 +172,7 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -214,7 +216,7 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int?>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -254,18 +256,18 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("nvarchar(3000)")
                         .HasMaxLength(3000);
 
-                    b.Property<int?>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                    b.Property<int>("ReportCategoryId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -274,11 +276,28 @@ namespace SpreadIt.Repository.Migrations
                     b.ToTable("PostReports");
                 });
 
+            modelBuilder.Entity("SpreadIt.Repository.Models.ReportCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ReportCategories");
+                });
+
             modelBuilder.Entity("SpreadIt.Repository.Models.Comment", b =>
                 {
                     b.HasOne("SpreadIt.Repository.Models.Post", null)
                         .WithMany("Comments")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.CommentRate", b =>
@@ -292,21 +311,27 @@ namespace SpreadIt.Repository.Migrations
                 {
                     b.HasOne("SpreadIt.Repository.Models.Comment", null)
                         .WithMany("CommentReports")
-                        .HasForeignKey("CommentId");
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.Post", b =>
                 {
-                    b.HasOne("SpreadIt.Repository.Models.Category", null)
+                    b.HasOne("SpreadIt.Repository.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.PostImage", b =>
                 {
                     b.HasOne("SpreadIt.Repository.Models.Post", null)
                         .WithMany("PostImages")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.PostRate", b =>
@@ -320,7 +345,9 @@ namespace SpreadIt.Repository.Migrations
                 {
                     b.HasOne("SpreadIt.Repository.Models.Post", null)
                         .WithMany("PostReports")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

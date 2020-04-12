@@ -9,19 +9,19 @@ using SpreadIt.Constants;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
 using SpreadIt.API.Helpers;
-using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace SpreadIt.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostsController : ControllerBase
     {
         ISpreadItRepository _repository;
         PostFactory _postFactory = new PostFactory();
+        PostImagesFactory _imageFactory = new PostImagesFactory();
         readonly LinkGenerator _linkGenerator;
-        //const int maxPageSize = 10;
 
         public PostsController(LinkGenerator linkGenerator)
         {
@@ -37,8 +37,11 @@ namespace SpreadIt.API.Controllers
             try
             {
                 if (id.HasValue)
-                    return Ok(_postFactory.CreatePost(
-                        _repository.GetPost(id.Value)));
+                { 
+                    var tempPost = _postFactory.CreatePost(
+                        _repository.GetPost(id.Value));
+                    return Ok(tempPost);
+                }
                 else
                 {
 
@@ -48,8 +51,9 @@ namespace SpreadIt.API.Controllers
                         lstOfFields = fields.ToLower().Split(',').ToList();
                     }
 
-                    var posts = _repository.GetPosts()
-                                    .ApplySort(sort)
+                    var posts = _repository.GetPosts();
+
+                    var x = posts.ApplySort(sort)
                                     .Select(a => _postFactory.CreateDataShapedObject(a, lstOfFields));
 
                     var totalCount = posts.Count();
@@ -105,34 +109,55 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Get"
+                    Method = "GetPosts"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] DTO.Post post)
+        [HttpPost, DisableRequestSizeLimit]
+        public IActionResult Post([FromForm] DTO.Post post)
         {
             try
-            {
-                if (post != null)
+            {          
+                if (post != null && !post.CategoryId.Equals(0))
                 {
-                    //if (post.LocationId.HasValue)
-                    //{
-                    //    var location = _repository.GetLocation(post.LocationId.Value);
-                    //    if (location != null)
-                    //    {
-                    //        post.Longitude = location.Longitude;
-                    //        post.Latitude = location.Latitude;
-                    //    }
-                    //}
                     var pos = _postFactory.CreatePost(post);
                     var result = _repository.InsertPost(pos);
 
-                    if (result.Status == RepositoryActionStatus.Created)
+                    if (result.Status == RepositoryActionStatus.Created && !pos.Id.Equals(0))
                     {
+                        var files = Request.Form.Files;
+                        var folderName = Path.Combine("Resources", "Images");
+                        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                        if (files.Any(f => f.Length == 0))
+                        {
+                            return BadRequest();
+                        }
+
+                        foreach (var file in files)
+                        {
+                            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                            var fullPath = Path.Combine(pathToSave, fileName);
+                            var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
+
+                            DTO.PostImage PostImage = new DTO.PostImage()
+                            {
+                                Path = dbPath,
+                                PostId = pos.Id
+                            };
+                        
+                            var image = _imageFactory.CreatePostImage(PostImage);
+                            var ImageResult = _repository.InsertImage(image);
+
+                            using (var stream = new FileStream(fullPath, FileMode.Create))
+                            {
+                                file.CopyTo(stream);
+                            }
+                        }
+
                         var newPost = _postFactory.CreatePost(result.Entity);
                         var newPostLink = _linkGenerator.GetPathByAction(
                         HttpContext,
@@ -145,9 +170,11 @@ namespace SpreadIt.API.Controllers
 
                         return Created(newPostLink, newPost);
                     }
+                    else
+                        return StatusCode(StatusCodes.Status500InternalServerError);
                 }
-
-                return BadRequest();
+                else 
+                    return BadRequest();
             }
             catch (Exception ex)
             {
@@ -155,19 +182,20 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PostPost"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-        } 
+        }
+
 
         [HttpPut]
-        public IActionResult PutComment([FromBody] DTO.Post post)
+        public IActionResult PutPost([FromBody] DTO.Post post)
         {
             try
             {
-                if (post != null && !post.Id.Equals(0))
+                if (post != null && !post.Id.Equals(0) && !post.CategoryId.Equals(0))
                 {
                     var pos = _postFactory.CreatePost(post);
                     var result = _repository.UpdatePost(pos);
