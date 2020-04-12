@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SpreadIt.API.Hubs;
 
 namespace SpreadIt.API
 {
@@ -26,6 +27,8 @@ namespace SpreadIt.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSignalR();
 
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
@@ -52,6 +55,8 @@ namespace SpreadIt.API
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(routes => routes.MapHub<SpreadItHub>("/SpreadItHub"));
 
             app.UseEndpoints(endpoints =>
             {
