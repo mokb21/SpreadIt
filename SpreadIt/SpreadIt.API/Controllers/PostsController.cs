@@ -56,10 +56,10 @@ namespace SpreadIt.API.Controllers
 
                     var posts = _repository.GetPosts();
 
-                    var x = posts.ApplySort(sort)
+                    var factorizedPosts = posts.ApplySort(sort)
                                     .Select(a => _postFactory.CreateDataShapedObject(a, lstOfFields));
 
-                    var totalCount = posts.Count();
+                    var totalCount = factorizedPosts.Count();
                     var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
 
 
@@ -101,7 +101,7 @@ namespace SpreadIt.API.Controllers
                         Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
 
 
-                    return Ok(posts
+                    return Ok(factorizedPosts
                             .Skip(pageSize * (page - 1))
                             .Take(pageSize));
                 }
