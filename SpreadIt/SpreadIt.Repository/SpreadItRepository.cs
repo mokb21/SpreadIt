@@ -122,7 +122,8 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Where(a => !a.IsDeleted).Where(a => !a.IsBlocked).Include(a => a.Category).Include(a => a.PostImages);
+                return _ctx.Posts.Include(a => a.PostImages).Include(a => a.Category)
+                    .Where(a => !a.IsBlocked && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -153,7 +154,7 @@ namespace SpreadIt.Repository
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertPost", Message = ex.Message });
                 return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
             }
-        } 
+        }
         public RepositoryActionResult<Post> UpdatePost(Post post)
         {
             try
@@ -183,7 +184,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Comments.Where(a => a.PostId == PostId).Where(a => a.IsBlocked.Equals(false)).Where(a => a.IsDeleted.Equals(false)).ToList();
+                return _ctx.Comments.Where(a => a.PostId == PostId && !a.IsBlocked && !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {
@@ -191,7 +192,7 @@ namespace SpreadIt.Repository
                 return null;
             }
         }
-     
+
         public RepositoryActionResult<Comment> InsertComment(Comment comment)
         {
             try
@@ -358,8 +359,8 @@ namespace SpreadIt.Repository
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPostReports", Message = ex.Message });
                 return null;
             }
-        }  
-        
+        }
+
         public IQueryable<PostReport> GetPostReportsByPostId(int PostId)
         {
             try
@@ -436,7 +437,8 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.CommentReports.Where(element => element.CommentId.Equals(CommentId)).Where(element => element.IsActive.Equals(true));
+                return _ctx.CommentReports.Where(e => e.CommentId.Equals(CommentId)
+                    && e.IsActive);
             }
             catch (Exception ex)
             {
@@ -503,7 +505,7 @@ namespace SpreadIt.Repository
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetReportCategories", Message = ex.Message });
                 return null;
             }
-        } 
+        }
         public ReportCategory GetReportCategoryById(int id)
         {
             try

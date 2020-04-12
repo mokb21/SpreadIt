@@ -33,24 +33,27 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int? id, string sort = "CreatedDate", string fields = null,
+        public IActionResult Get(int? id, string sort = "CreatedDate", 
+            string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
             {
                 if (id.HasValue)
                 { 
-                    var tempPost = _postFactory.CreatePost(
+                    var post = _postFactory.CreatePost(
                         _repository.GetPost(id.Value));
-                    return Ok(tempPost);
+                    return Ok(post);
                 }
                 else
                 {
 
                     List<string> lstOfFields = new List<string>();
+                    bool includeImages = false;
                     if (fields != null)
                     {
                         lstOfFields = fields.ToLower().Split(',').ToList();
+                        includeImages = lstOfFields.Any(f => f.Contains("images"));
                     }
 
                     var posts = _repository.GetPosts();

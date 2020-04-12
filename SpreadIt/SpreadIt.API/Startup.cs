@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SpreadIt.API.Hubs;
 
 namespace SpreadIt.API
 {
@@ -30,6 +31,8 @@ namespace SpreadIt.API
         {
             services.AddControllers();
 
+            services.AddSignalR();
+
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
@@ -38,7 +41,14 @@ namespace SpreadIt.API
 
                 options.Audience = "spreadItAPI";
             });
-            services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(o => {
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(o =>
+            {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
@@ -63,6 +73,8 @@ namespace SpreadIt.API
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(routes => routes.MapHub<SpreadItHub>("/SpreadItHub"));
 
             app.UseEndpoints(endpoints =>
             {
