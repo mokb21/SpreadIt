@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using SpreadIt.API.Helpers;
 using SpreadIt.Constants;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
-
 
 namespace SpreadIt.API.Controllers
 {
@@ -30,7 +28,7 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetReportsCategories(int? id)
+        public IActionResult Get(int? id)
         {
             try
             {
@@ -52,7 +50,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Get"
+                    Method = "GetReportsCategories"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

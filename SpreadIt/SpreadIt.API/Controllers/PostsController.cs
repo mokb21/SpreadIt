@@ -13,6 +13,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using SpreadIt.Repository.Models;
 
 namespace SpreadIt.API.Controllers
 {
@@ -51,11 +52,9 @@ namespace SpreadIt.API.Controllers
                 {
 
                     List<string> lstOfFields = new List<string>();
-                    bool includeImages = false;
                     if (fields != null)
                     {
                         lstOfFields = fields.ToLower().Split(',').ToList();
-                        includeImages = lstOfFields.Any(f => f.Contains("images"));
                     }
 
                     var posts = _repository.GetPosts();
@@ -150,13 +149,12 @@ namespace SpreadIt.API.Controllers
                             var fullPath = Path.Combine(pathToSave, fileName);
                             var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
 
-                            DTO.PostImage PostImage = new DTO.PostImage()
+                            PostImage image = new PostImage()
                             {
                                 Path = dbPath,
                                 PostId = pos.Id
                             };
 
-                            var image = _imageFactory.CreatePostImage(PostImage);
                             var ImageResult = _repository.InsertImage(image);
 
                             using (var stream = new FileStream(fullPath, FileMode.Create))
@@ -168,7 +166,7 @@ namespace SpreadIt.API.Controllers
                         var newPost = _postFactory.CreatePost(result.Entity);
                         var newPostLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Post",
+                        action: "Get",
                         controller: "Posts",
                         values: new
                         {
@@ -198,7 +196,7 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpPut]
-        public IActionResult PutPost([FromBody] DTO.Post post)
+        public IActionResult Put([FromBody] DTO.Post post)
         {
             try
             {
@@ -212,7 +210,7 @@ namespace SpreadIt.API.Controllers
                         var newPost = _postFactory.CreatePost(result.Entity);
                         var newPostLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "PutComment",
+                        action: "Get",
                         controller: "Posts",
                         values: new
                         {
@@ -233,7 +231,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Put"
+                    Method = "PutPost"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

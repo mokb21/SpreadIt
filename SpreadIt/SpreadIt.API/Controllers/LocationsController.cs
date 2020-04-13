@@ -51,7 +51,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Get"
+                    Method = "GetLocation"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -80,8 +80,7 @@ namespace SpreadIt.API.Controllers
                                 id = newlocation.Id
                             });
 
-                        return Created("api/Location?id=" + newlocation.Id.ToString(),
-                            newlocation);
+                        return Created(newLocationLink, newlocation);
                     }
                 }
 
@@ -93,7 +92,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PostLocation"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -120,7 +119,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Delete"
+                    Method = "DeleteLocation"
                 });
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

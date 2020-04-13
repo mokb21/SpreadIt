@@ -11,6 +11,10 @@ namespace SpreadIt.IdSrv.Models
 {
     public class SpreadItIdSrvDbContext : IdentityDbContext<ApplicationUser>
     {
+        public SpreadItIdSrvDbContext()
+        {
+
+        }
         public SpreadItIdSrvDbContext(DbContextOptions<SpreadItIdSrvDbContext> options)
             : base(options)
         {

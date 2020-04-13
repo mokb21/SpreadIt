@@ -132,6 +132,118 @@
         }
       }
     },
+    "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj",
+        "projectName": "SpreadIt.IdSrv",
+        "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj",
+        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
+        "outputPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj": {
+                "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Constants\\SpreadIt.Constants.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "IdentityServer4": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "IdentityServer4.AspNetIdentity": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "IdentityServer4.EntityFramework": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "System.Security.Principal.Windows": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.Repository\\SpreadIt.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -163,6 +275,9 @@
               },
               "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj": {
                 "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.DTO\\SpreadIt.DTO.csproj"
+              },
+              "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj": {
+                "projectPath": "E:\\Junior\\New folder\\SpreadIt\\SpreadIt\\SpreadIt.IdSrv\\SpreadIt.IdSrv.csproj"
               }
             }
           }
@@ -182,23 +297,23 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.3, )"
             }
           },
           "imports": [
@@ -212,6 +327,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpreadIt.Constants;
+using SpreadIt.IdSrv.Models;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.Repository
@@ -243,17 +246,14 @@ namespace SpreadIt.Repository
         {
             try
             {
-                var comment = _ctx.Comments.Find(id);
-                _ctx.Comments.Remove(comment);
-                var result = _ctx.SaveChanges();
-                if (result > 0)
+                var comment = _ctx.Comments.FirstOrDefault(a => a.Id == id && !a.IsDeleted);
+                if (comment != null)
                 {
-                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.Deleted);
+                    comment.IsDeleted = true;
+                    _ctx.SaveChanges();
+                    return new RepositoryActionResult<Comment>(null, RepositoryActionStatus.Deleted);
                 }
-                else
-                {
-                    return new RepositoryActionResult<Comment>(comment, RepositoryActionStatus.NothingModified, null);
-                }
+                return new RepositoryActionResult<Comment>(null, RepositoryActionStatus.NotFound);
             }
             catch (Exception ex)
             {
@@ -328,16 +328,13 @@ namespace SpreadIt.Repository
             try
             {
                 var category = _ctx.Categories.Find(id);
-                _ctx.Categories.Remove(category);
-                var result = _ctx.SaveChanges();
-                if (result > 0)
+                if (category != null)
                 {
-                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.Deleted);
+                    _ctx.Categories.Remove(category);
+                    _ctx.SaveChanges();
+                    return new RepositoryActionResult<Category>(null, RepositoryActionStatus.Deleted);
                 }
-                else
-                {
-                    return new RepositoryActionResult<Category>(category, RepositoryActionStatus.NothingModified, null);
-                }
+                return new RepositoryActionResult<Category>(null, RepositoryActionStatus.NotFound);
             }
             catch (Exception ex)
             {
@@ -399,23 +396,19 @@ namespace SpreadIt.Repository
         {
             try
             {
-                _ctx.PostReports.Where(element => element.Id.Equals(id))
-                    .Select(element => element.IsActive == !element.IsActive);
-                var result = _ctx.SaveChanges();
-                var updatedPostReprot = _ctx.PostReports.FirstOrDefault(element => element.Id.Equals(id));
-                if (result > 0)
+                var postReport = _ctx.PostReports.FirstOrDefault(element => element.Id.Equals(id));
+                if (postReport != null)
                 {
-                    return new RepositoryActionResult<PostReport>(updatedPostReprot, RepositoryActionStatus.Updated);
+                    postReport.IsActive = !postReport.IsActive;
+                    _ctx.SaveChanges();
+                    return new RepositoryActionResult<PostReport>(postReport, RepositoryActionStatus.Updated);
                 }
-                else
-                {
-                    return new RepositoryActionResult<PostReport>(updatedPostReprot, RepositoryActionStatus.NothingModified, null);
-                }
+                return new RepositoryActionResult<PostReport>(postReport, RepositoryActionStatus.NotFound);
             }
             catch (Exception ex)
             {
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "ChangePostReportStatus", Message = ex.Message });
-                return null;
+                return new RepositoryActionResult<PostReport>(null, RepositoryActionStatus.Error, ex);
             }
         }
         #endregion Post Reprots
@@ -488,7 +481,7 @@ namespace SpreadIt.Repository
             catch (Exception ex)
             {
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "ChangeCommentReportStatus", Message = ex.Message });
-                return null;
+                return new RepositoryActionResult<CommentReport>(null, RepositoryActionStatus.Error, ex);
             }
         }
         #endregion

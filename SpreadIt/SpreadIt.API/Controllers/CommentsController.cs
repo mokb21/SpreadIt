@@ -29,7 +29,7 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpGet("{PostId}")]
-        public IActionResult GetCommentByPost(int PostId)
+        public IActionResult Get(int PostId)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Get"
+                    Method = "GetComment"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -53,11 +53,11 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostComment([FromBody]DTO.Comment comment)
+        public IActionResult Post([FromBody]DTO.Comment comment)
         {
             try
             {
-                if (comment != null && !comment.PostId.Equals(0))
+                if (comment != null)
                 {
                     var commen = _commentFactory.CreateComment(comment);
                     var result = _repository.InsertComment(commen);
@@ -67,15 +67,14 @@ namespace SpreadIt.API.Controllers
                         var newComment = _commentFactory.CreateComment(result.Entity);
                         var newCommentLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Post",
+                        action: "Get",
                         controller: "Comments",
                         values: new
                         {
                             id = newComment.Id
                         });
 
-                        //return Created(newCommentLink, newComment);
-                        return Created("", newComment);
+                        return Created(newCommentLink, newComment);
                     }
                     else
                         return StatusCode(StatusCodes.Status500InternalServerError);
@@ -89,15 +88,15 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PostComment"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-      
+
         [HttpPut]
-        public IActionResult PutComment([FromBody]DTO.Comment comment)
+        public IActionResult Put([FromBody]DTO.Comment comment)
         {
             try
             {
@@ -111,7 +110,7 @@ namespace SpreadIt.API.Controllers
                         var newComment = _commentFactory.CreateComment(result.Entity);
                         var newCommentLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Put",
+                        action: "Get",
                         controller: "Comments",
                         values: new
                         {
@@ -132,7 +131,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PutComment"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -141,22 +140,18 @@ namespace SpreadIt.API.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteComment(int id)
+        public IActionResult Delete(int id)
         {
             try
             {
-                if (!id.Equals(0))
-                {
-                    var result = _repository.DeleteComment(id);
-                    if (result.Status == RepositoryActionStatus.Deleted)
-                    {
-                        return Ok("Comment Has Been Deleted");
-                    }
-                    else
-                        return NotFound();
-                }
-                else
-                    return BadRequest();
+                var result = _repository.DeleteComment(id);
+
+                if (result.Status == RepositoryActionStatus.Deleted)
+                    return NoContent();
+                else if (result.Status == RepositoryActionStatus.NotFound)
+                    return NotFound();
+
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -164,7 +159,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Delete"
+                    Method = "DeleteComment"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

@@ -30,7 +30,7 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCommentsReports(int? commentId, string sort = "CreatedDate", string fields = null,
+        public IActionResult Get(int? commentId, string sort = "CreatedDate", string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
@@ -108,7 +108,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Get"
+                    Method = "GetCommentReport"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -117,7 +117,7 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateCommentReport([FromBody]DTO.CommentReport commentReport)
+        public IActionResult Post([FromBody]DTO.CommentReport commentReport)
         {
             try
             {
@@ -131,15 +131,14 @@ namespace SpreadIt.API.Controllers
                         var newPostReport = _commentReportFactory.CreateCommentReport(result.Entity);
                         var newCommentLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Post",
+                        action: "Get",
                         controller: "PostReports",
                         values: new
                         {
                             id = newPostReport.Id
                         });
 
-                        //return Created(newCommentLink, newComment);
-                        return Created("New Post Report Has been Created", newPostReport);
+                        return Created(newCommentLink, newPostReport);
                     }
                     else
                         return StatusCode(StatusCodes.Status500InternalServerError);
@@ -153,7 +152,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PostCommentReport"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -161,34 +160,28 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult ChangeCommentReportStatus(int id)
+        public IActionResult Put(int id)
         {
             try
             {
-                if (!id.Equals(0))
+                var result = _repository.ChangeCommentReportStatus(id);
+
+                if (result.Status == RepositoryActionStatus.Created)
                 {
-                    var result = _repository.ChangeCommentReportStatus(id);
-
-                    if (result.Status == RepositoryActionStatus.Created)
+                    var UpdatedCommentReport = _commentReportFactory.CreateCommentReport(result.Entity);
+                    var newCommentLink = _linkGenerator.GetPathByAction(
+                    HttpContext,
+                    action: "Get",
+                    controller: "PostReports",
+                    values: new
                     {
-                        var UpdatedCommentReport = _commentReportFactory.CreateCommentReport(result.Entity);
-                        var newCommentLink = _linkGenerator.GetPathByAction(
-                        HttpContext,
-                        action: "Put",
-                        controller: "PostReports",
-                        values: new
-                        {
-                            id = UpdatedCommentReport.Id
-                        });
+                        id = UpdatedCommentReport.Id
+                    });
 
-                        //return Created(newCommentLink, newComment);
-                        return Created("Comment Report Has been Updated", UpdatedCommentReport);
-                    }
-                    else
-                        return StatusCode(StatusCodes.Status500InternalServerError);
+                    return Created(newCommentLink, UpdatedCommentReport);
                 }
-
-                return BadRequest();
+                else
+                    return StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
             {
@@ -196,12 +189,12 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PutCommentReport"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-        }
 
+        }
     }
 }

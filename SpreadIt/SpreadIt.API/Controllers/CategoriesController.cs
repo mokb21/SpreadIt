@@ -16,7 +16,7 @@ namespace SpreadIt.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class CategoriesController : Controller
     {
 
@@ -32,66 +32,66 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCategories(int? id, string sort = "Name", string fields = null,
+        public IActionResult Get(int? id, string sort = "Name", string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
             {
-                    List<string> lstOfFields = new List<string>();
-                    if (fields != null)
+                List<string> lstOfFields = new List<string>();
+                if (fields != null)
+                {
+                    lstOfFields = fields.ToLower().Split(',').ToList();
+                }
+
+                var categories = _repository.GetCategories()
+                                .ApplySort(sort)
+                                .Select(a => _categoryFactory.CreateDataShapedObject(a, lstOfFields));
+
+                var totalCount = categories.Count();
+                var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+
+                string prevLink = page > 1 ? _linkGenerator.GetPathByAction(
+                    HttpContext,
+                    action: "Get",
+                    controller: "Categories",
+                    values: new
                     {
-                        lstOfFields = fields.ToLower().Split(',').ToList();
-                    }
-
-                    var categories = _repository.GetCategories()
-                                    .ApplySort(sort)
-                                    .Select(a => _categoryFactory.CreateDataShapedObject(a, lstOfFields));
-
-                    var totalCount = categories.Count();
-                    var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
-
-
-                    string prevLink = page > 1 ? _linkGenerator.GetPathByAction(
-                        HttpContext,
-                        action: "Get",
-                        controller: "Categories",
-                        values: new
-                        {
-                            page = page - 1,
-                            pageSize = pageSize,
-                            sort = sort,
-                            fields = fields
-                        }) : "";
-
-                    var nextLink = page < totalPages ? _linkGenerator.GetPathByAction(
-                        HttpContext,
-                        action: "Get",
-                        controller: "Categories",
-                        values: new
-                        {
-                            page = page + 1,
-                            pageSize = pageSize,
-                            sort = sort,
-                            fields = fields
-                        }) : "";
-
-                    var paginationHeader = new
-                    {
-                        currentPage = page,
+                        page = page - 1,
                         pageSize = pageSize,
-                        totalCount = totalCount,
-                        totalPages = totalPages,
-                        prevLink = prevLink,
-                        nextLink = nextLink
-                    };
+                        sort = sort,
+                        fields = fields
+                    }) : "";
 
-                    Response.Headers.Add("X-Pagination",
-                        Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
+                var nextLink = page < totalPages ? _linkGenerator.GetPathByAction(
+                    HttpContext,
+                    action: "Get",
+                    controller: "Categories",
+                    values: new
+                    {
+                        page = page + 1,
+                        pageSize = pageSize,
+                        sort = sort,
+                        fields = fields
+                    }) : "";
+
+                var paginationHeader = new
+                {
+                    currentPage = page,
+                    pageSize = pageSize,
+                    totalCount = totalCount,
+                    totalPages = totalPages,
+                    prevLink = prevLink,
+                    nextLink = nextLink
+                };
+
+                Response.Headers.Add("X-Pagination",
+                    Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
 
 
-                    return Ok(categories
-                            .Skip(pageSize * (page - 1))
-                            .Take(pageSize));
+                return Ok(categories
+                        .Skip(pageSize * (page - 1))
+                        .Take(pageSize));
             }
             catch (Exception ex)
             {
@@ -99,7 +99,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Get"
+                    Method = "GetCategories"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -108,7 +108,7 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpPost]
-        public IActionResult PostCategory([FromBody]DTO.Category category)
+        public IActionResult Post([FromBody]DTO.Category category)
         {
             try
             {
@@ -129,8 +129,7 @@ namespace SpreadIt.API.Controllers
                             id = newCategory.Id
                         });
 
-                        //return Created(newCommentLink, newComment);
-                        return Created("New Category Has been Created", newCategory);
+                        return Created(newCommentLink, newCategory);
                     }
                     else
                         return StatusCode(StatusCodes.Status500InternalServerError);
@@ -144,7 +143,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PostCategories"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -152,7 +151,7 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult PutCategory([FromBody]DTO.Category category)
+        public IActionResult Put([FromBody]DTO.Category category)
         {
             try
             {
@@ -166,7 +165,7 @@ namespace SpreadIt.API.Controllers
                         var newCategory = _categoryFactory.CreateCategory(result.Entity);
                         var newCommentLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Put",
+                        action: "Get",
                         controller: "Categories",
                         values: new
                         {
@@ -187,7 +186,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Post"
+                    Method = "PutCategories"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -195,22 +194,17 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCategory(int id)
+        public IActionResult Delete(int id)
         {
             try
             {
-                if (!id.Equals(0))
+                var result = _repository.DeleteCategory(id);
+                if (result.Status == RepositoryActionStatus.Deleted)
                 {
-                    var result = _repository.DeleteCategory(id);
-                    if (result.Status == RepositoryActionStatus.Deleted)
-                    {
-                        return Ok("Category Has Been Deleted");
-                    }
-                    else
-                        return NotFound();
+                    return NoContent();
                 }
                 else
-                    return BadRequest();
+                    return NotFound();
             }
             catch (Exception ex)
             {
@@ -218,7 +212,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "Delete"
+                    Method = "DeleteCategories"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

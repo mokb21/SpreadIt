@@ -1,4 +1,5 @@
-﻿using SpreadIt.Repository.Models;
+﻿using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,6 +52,7 @@ namespace SpreadIt.Repository
         public RepositoryActionResult<CommentReport> InsertCommentReport(CommentReport commentReport);
         public RepositoryActionResult<CommentReport> ChangeCommentReportStatus(int id);
         #endregion
+
         #region Reports Categories
         IQueryable<ReportCategory> GetReportCategories();
         ReportCategory GetReportCategory(int id);
