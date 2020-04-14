@@ -9,7 +9,6 @@ namespace SpreadIt.Repository.Factories
 {
     public class PostImagesFactory
     {
-        string BaseHostingUrl = "http://eyadakkad-001-site4.btempurl.com/";
         public PostImagesFactory()
         {
 
@@ -20,11 +19,10 @@ namespace SpreadIt.Repository.Factories
             return new DTO.PostImage()
             {
                 Id = postImage.Id,
-                Path = BaseHostingUrl + postImage.Path.Replace("\\", "/"),
+                Path = Constants.SpreadItConstants.APIURI + postImage.Path.Replace("\\", "/"),
                 PostId = postImage.PostId
             };
         }
-        //tps://media.mkiosk.net/categoriesCover/Luxury-bl.png
 
 
         public PostImage CreatePostImage(DTO.PostImage postImage)

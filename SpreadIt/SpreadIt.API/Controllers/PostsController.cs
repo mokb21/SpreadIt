@@ -135,8 +135,8 @@ namespace SpreadIt.API.Controllers
                     if (result.Status == RepositoryActionStatus.Created && !pos.Id.Equals(0))
                     {
                         var files = Request.Form.Files;
-                        var folderName = Path.Combine("Resources", "Images");
-                        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                        //var folderName = Path.Combine("Resources", "Images");
+                        //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                         if (files.Any(f => f.Length == 0))
                         {
@@ -146,12 +146,12 @@ namespace SpreadIt.API.Controllers
                         foreach (var file in files)
                         {
                             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                            var fullPath = Path.Combine(pathToSave, fileName);
-                            var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
-
+                            //var fullPath = Path.Combine(Con, fileName);
+                            //var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
+                            var fullPath = Path.Combine(SpreadItConstants.ImagesFolderPath, fileName);
                             PostImage image = new PostImage()
                             {
-                                Path = dbPath,
+                                Path = fullPath,
                                 PostId = pos.Id
                             };
 
@@ -194,7 +194,6 @@ namespace SpreadIt.API.Controllers
             }
         }
 
-
         [HttpPut]
         public IActionResult Put([FromBody] DTO.Post post)
         {
@@ -202,8 +201,8 @@ namespace SpreadIt.API.Controllers
             {
                 if (post != null && !post.Id.Equals(0) && !post.CategoryId.Equals(0))
                 {
-                    var pos = _postFactory.CreatePost(post);
-                    var result = _repository.UpdatePost(pos);
+                    var postDb = _postFactory.CreatePost(post);
+                    var result = _repository.UpdatePost(postDb);
 
                     if (result.Status == RepositoryActionStatus.Updated)
                     {
@@ -232,6 +231,33 @@ namespace SpreadIt.API.Controllers
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
                     Method = "PutPost"
+                });
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = _repository.DeletePost(id);
+
+                if (result.Status == RepositoryActionStatus.Deleted)
+                    return NoContent();
+                else if (result.Status == RepositoryActionStatus.NotFound)
+                    return NotFound();
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                {
+                    Project = (byte)ProjectType.API,
+                    Message = ex.Message,
+                    Method = "DeletePost"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

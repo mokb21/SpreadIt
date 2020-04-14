@@ -158,6 +158,7 @@ namespace SpreadIt.Repository
                 return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
             }
         }
+
         public RepositoryActionResult<Post> UpdatePost(Post post)
         {
             try
@@ -177,6 +178,26 @@ namespace SpreadIt.Repository
             catch (Exception ex)
             {
                 InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "UpdatePost", Message = ex.Message });
+                return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+
+        public RepositoryActionResult<Post> DeletePost(int id)
+        {
+            try
+            {
+                var comment = _ctx.Posts.FirstOrDefault(a => a.Id == id && !a.IsDeleted);
+                if (comment != null)
+                {
+                    comment.IsDeleted = true;
+                    _ctx.SaveChanges();
+                    return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Deleted);
+                }
+                return new RepositoryActionResult<Post>(null, RepositoryActionStatus.NotFound);
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "DeletePost", Message = ex.Message });
                 return new RepositoryActionResult<Post>(null, RepositoryActionStatus.Error, ex);
             }
         }

@@ -23,6 +23,7 @@ namespace SpreadIt.Repository
         IQueryable<Post> GetPosts();
         RepositoryActionResult<Post> InsertPost(Post post);
         RepositoryActionResult<Post> UpdatePost(Post post);
+        RepositoryActionResult<Post> DeletePost(int id);
         #endregion
 
         #region Comments

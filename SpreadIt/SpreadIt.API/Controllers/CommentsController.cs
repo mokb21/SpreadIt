@@ -102,8 +102,8 @@ namespace SpreadIt.API.Controllers
             {
                 if (comment != null && !comment.PostId.Equals(0) && !comment.Id.Equals(0))
                 {
-                    var commen = _commentFactory.CreateComment(comment);
-                    var result = _repository.UpdateComment(commen);
+                    var commentDb = _commentFactory.CreateComment(comment);
+                    var result = _repository.UpdateComment(commentDb);
 
                     if (result.Status == RepositoryActionStatus.Updated)
                     {
