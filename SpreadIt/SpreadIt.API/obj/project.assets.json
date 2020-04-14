@@ -3245,10 +3245,7 @@
         },
         "runtime": {
           "bin/placeholder/SpreadIt.Repository.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
