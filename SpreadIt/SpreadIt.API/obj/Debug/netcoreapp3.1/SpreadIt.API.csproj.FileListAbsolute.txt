@@ -1,5 +1,11 @@
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.csprojAssemblyReference.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.csproj.CoreCompileInputs.cache
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Linq.Dynamic.Core.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\staticwebassets\SpreadIt.API.StaticWebAssets.xml
+E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.csprojAssemblyReference.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.MvcApplicationPartsAssemblyInfo.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.AssemblyInfoInputs.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.AssemblyInfo.cs
@@ -96,10 +102,8 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Syst
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Linq.Dynamic.Core.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
@@ -115,7 +119,6 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\ru\M
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -149,14 +152,12 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\it\M
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
@@ -173,7 +174,6 @@ E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\bin\Debug\netcoreapp3.1\Spre
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.RazorTargetAssemblyInfo.cache
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.csproj.CopyComplete
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\staticwebassets\SpreadIt.API.StaticWebAssets.Manifest.cache
-E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\staticwebassets\SpreadIt.API.StaticWebAssets.xml
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.dll
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.pdb
 E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.API\obj\Debug\netcoreapp3.1\SpreadIt.API.genruntimeconfig.cache

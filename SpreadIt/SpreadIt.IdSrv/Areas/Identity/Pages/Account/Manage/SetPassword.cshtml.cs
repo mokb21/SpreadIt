@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv.Areas.Identity.Pages.Account.Manage
 {

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using SpreadIt.API.Helpers;
 using SpreadIt.Constants;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
 using SpreadIt.Repository.Models;

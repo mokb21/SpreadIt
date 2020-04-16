@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpreadIt.Constants;
-using SpreadIt.IdSrv.Models;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.Repository

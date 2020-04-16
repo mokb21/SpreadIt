@@ -35,7 +35,7 @@ using SpreadIt.IdSrv.Areas.Identity.Pages;
 #nullable disable
 #nullable restore
 #line 5 "E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.IdSrv\Areas\Identity\Pages\_ViewImports.cshtml"
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
 #line default
 #line hidden
@@ -48,7 +48,7 @@ using SpreadIt.IdSrv.Areas.Identity.Pages.Account;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c457216ca5cd63af204ee6e65757be98be13291f", @"/Areas/Identity/Pages/Account/ConfirmEmail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9fbcdbc993f6facebaa5b68b2d464633809b3216", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"315ab26e4e3b4df7cd7e53d8b81b23897c16dcd1", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8353e247115823c8945a9041ab7ed808fdade305", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_ConfirmEmail : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
@@ -94,7 +94,7 @@ Write(ViewData["Title"]);
 #line hidden
 #nullable disable
             WriteLiteral("</h2>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c457216ca5cd63af204ee6e65757be98be13291f4893", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c457216ca5cd63af204ee6e65757be98be13291f4898", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

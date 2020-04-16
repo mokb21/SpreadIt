@@ -17,7 +17,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv
 {

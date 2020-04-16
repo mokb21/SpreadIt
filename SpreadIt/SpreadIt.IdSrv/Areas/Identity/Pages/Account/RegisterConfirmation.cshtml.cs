@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace SpreadIt.IdSrv.Areas.Identity.Pages.Account

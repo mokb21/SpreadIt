@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
-namespace SpreadIt.IdSrv.Models
+namespace SpreadIt.Repository.Models
 {
     public class SpreadItIdSrvDbContext : IdentityDbContext<ApplicationUser>
     {

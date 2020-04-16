@@ -16,7 +16,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv
 {

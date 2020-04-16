@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
 [assembly: HostingStartup(typeof(SpreadIt.IdSrv.Areas.Identity.IdentityHostingStartup))]
 namespace SpreadIt.IdSrv.Areas.Identity

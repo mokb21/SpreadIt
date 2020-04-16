@@ -16,7 +16,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SpreadIt.API.Hubs;
-using SpreadIt.IdSrv.Models;
+using SpreadIt.Repository.Models;
 
 namespace SpreadIt.API
 {
@@ -74,11 +74,11 @@ namespace SpreadIt.API
             }
             app.UseCors();
             app.UseHttpsRedirection();
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-                RequestPath = new PathString("/Resources")
-            });
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+            //    RequestPath = new PathString("/Resources")
+            //});
             app.UseRouting();
 
             app.UseAuthentication();
