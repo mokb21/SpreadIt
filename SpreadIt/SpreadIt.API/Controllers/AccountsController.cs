@@ -12,7 +12,7 @@ using SpreadIt.Constants;
 using SpreadIt.Repository.Models;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
-using SpreadIt.Repository.Models;
+using SpreadIt.IdSrv.Data;
 
 namespace SpreadIt.API.Controllers
 {

@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
+using SpreadIt.IdSrv.Data;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv

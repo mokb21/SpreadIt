@@ -16,6 +16,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SpreadIt.API.Hubs;
+using SpreadIt.IdSrv.Data;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.API

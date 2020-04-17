@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SpreadIt.Repository.Models;
 
-namespace SpreadIt.Repository.Models
+namespace SpreadIt.IdSrv.Data
 {
     public class SpreadItIdSrvDbContext : IdentityDbContext<ApplicationUser>
     {

@@ -11,7 +11,7 @@ namespace SpreadIt.Constants
 
         public const string IdSrvURI = "https://localhost:44347/";
 
-        public const string APIURI = "https://localhost:44327/";
+        public const string APIURI = "https://localhost:44337/";
 
         public const string ImagesFolderPath = "E://JuniorProject//PostsImages//";
 
