@@ -1,4 +1,0 @@
-﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/Identity" Path="C:\Users\MHD\.nuget\packages\microsoft.aspnetcore.identity.ui\3.1.1\staticwebassets\V4\" />
-  <ContentRoot BasePath="_content/SpreadIt.IdSrv" Path="E:\Junior\New folder\SpreadIt\SpreadIt\SpreadIt.IdSrv\wwwroot\" />
-</StaticWebAssets>
