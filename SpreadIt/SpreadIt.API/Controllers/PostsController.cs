@@ -34,7 +34,7 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int? id, string sort = "CreatedDate",
+        public IActionResult Get(int? id, string sort = "-CreatedDate",
             string fields = null,
             int page = 1, int pageSize = 5)
         {
