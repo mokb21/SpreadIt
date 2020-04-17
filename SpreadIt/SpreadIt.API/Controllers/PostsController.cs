@@ -201,6 +201,8 @@ namespace SpreadIt.API.Controllers
             {
                 if (post != null && !post.Id.Equals(0) && !post.CategoryId.Equals(0))
                 {
+                    post.LastUpdatedDate = DateTime.Now;
+
                     var postDb = _postFactory.CreatePost(post);
                     var result = _repository.UpdatePost(postDb);
 

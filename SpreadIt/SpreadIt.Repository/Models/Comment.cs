@@ -14,8 +14,6 @@ namespace SpreadIt.Repository.Models
         public string Text { get; set; }
         public bool IsBlocked { get; set; }
         public bool IsDeleted { get; set; }
-        //public int postId { get; set; }
-        //public virtual Post post { get; set; }
         [ForeignKey("Post")]
         public int PostId { get; set; }
         public ICollection<CommentRate> CommentRates { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 {
     [DbContext(typeof(SpreadItIdSrvDbContext))]
-    partial class SpreadItIdSrvDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200417085553_CustomPropertiesSetLength")]
+    partial class CustomPropertiesSetLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,15 +336,15 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31d0f17b-d525-4410-9c8d-c370f893c46b",
+                            ConcurrencyStamp = "e19a246e-fb60-408a-8fd9-b1564ebed8ca",
                             Email = "AliceSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ALICESMITH@EMAIL.COM",
                             NormalizedUserName = "ALICE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAxY7kKbHG3NTL/GhsAiSbduNZg7nzjp0LNAYmkRm2msTEPx6MntBM0IxTa9VPDEog==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDdm6bTvAdAUIU36k7lKTBeZwweeI+CVeyw5DutNaJPR1mGqASfuRX1gOwfzMLhfag==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2ef8c743-b182-494e-9742-27b39e301338",
+                            SecurityStamp = "32394983-f6cd-4357-98b2-7f4eeae3401f",
                             TwoFactorEnabled = false,
                             UserName = "alice"
                         },
@@ -350,15 +352,15 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0654fbc5-76df-4344-865b-18ba3598bcc6",
+                            ConcurrencyStamp = "1e7941b0-1d3c-45db-9c33-8cc47afbfeb7",
                             Email = "BobSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BOBSMITH@EMAIL.COM",
                             NormalizedUserName = "BOB",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOCuEdkI3G8wA4kJo2aLTJPyFvZ+0SuQocaNlV6/upNFtza/yFcpkWB/UgLtkmo+mQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB54Pc5X11pZMaDebZ5ra6KkIgXP5lv6R46NPPfl9Up6uhJtw5wx9NqP8C2Pnq7m8A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c458663-d7e5-42a7-bbf1-913767c0c1b6",
+                            SecurityStamp = "68271fd3-8042-43d5-a993-b7ffe77ad4f5",
                             TwoFactorEnabled = false,
                             UserName = "bob"
                         });

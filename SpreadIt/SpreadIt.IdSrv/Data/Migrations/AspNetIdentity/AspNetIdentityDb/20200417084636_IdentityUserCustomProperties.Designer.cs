@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 {
     [DbContext(typeof(SpreadItIdSrvDbContext))]
-    partial class SpreadItIdSrvDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200417084636_IdentityUserCustomProperties")]
+    partial class IdentityUserCustomProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -277,8 +279,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         .HasColumnType("bit");
 
                     b.Property<string>("Image")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -287,8 +288,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -334,15 +334,15 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31d0f17b-d525-4410-9c8d-c370f893c46b",
+                            ConcurrencyStamp = "63a28acd-9cfd-40ac-ad30-69c01cfcaa04",
                             Email = "AliceSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ALICESMITH@EMAIL.COM",
                             NormalizedUserName = "ALICE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAxY7kKbHG3NTL/GhsAiSbduNZg7nzjp0LNAYmkRm2msTEPx6MntBM0IxTa9VPDEog==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMI/hb+N1Cn9U5E7Vt5MrfXAMUv6RHEI+UzQ+X1vwQQdKc+qDf9ceLbQEZkVDZVWMA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2ef8c743-b182-494e-9742-27b39e301338",
+                            SecurityStamp = "1afa9941-26b5-40f7-b917-d50e114bbffe",
                             TwoFactorEnabled = false,
                             UserName = "alice"
                         },
@@ -350,15 +350,15 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0654fbc5-76df-4344-865b-18ba3598bcc6",
+                            ConcurrencyStamp = "5c32b053-ea26-4a2d-aa00-cb2f7ac8a685",
                             Email = "BobSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BOBSMITH@EMAIL.COM",
                             NormalizedUserName = "BOB",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOCuEdkI3G8wA4kJo2aLTJPyFvZ+0SuQocaNlV6/upNFtza/yFcpkWB/UgLtkmo+mQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGHSNKO6ZsMqPNPIi7iiijYSAaZralxbvOXWyDm97cQcizhST7pzVMmmRY97ld7tzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c458663-d7e5-42a7-bbf1-913767c0c1b6",
+                            SecurityStamp = "218b1868-0c83-4da1-8032-4221acf4676c",
                             TwoFactorEnabled = false,
                             UserName = "bob"
                         });

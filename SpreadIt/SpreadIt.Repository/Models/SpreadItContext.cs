@@ -13,9 +13,26 @@ namespace SpreadIt.Repository.Models
         }
 
         public SpreadItContext(DbContextOptions<SpreadItContext> options)
-            : base(options) 
+            : base(options)
         {
-        
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<UserLocation>()
+                .HasKey(ul => new { ul.UserId, ul.LocationId });
+            builder.Entity<UserLocation>()
+                .HasOne(ul => ul.User)
+                .WithMany(ul => ul.UserLocations)
+                .HasForeignKey(ul => ul.UserId);
+            builder.Entity<UserLocation>()
+                .HasOne(ul => ul.Location)
+                .WithMany(ul => ul.UserLocations)
+                .HasForeignKey(ul => ul.LocationId);
+
         }
 
         public DbSet<MessageLog> MessageLogs { get; set; }
@@ -29,8 +46,10 @@ namespace SpreadIt.Repository.Models
         public DbSet<CommentRate> CommentRates { get; set; }
         public DbSet<CommentReport> CommentReports { get; set; }
         public DbSet<ReportCategory> ReportCategories { get; set; }
+        public DbSet<UserLocation> UserLocation { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
             base.OnConfiguring(optionsBuilder);
 
             optionsBuilder.UseSqlServer(SpreadIt.Constants.SpreadItConstants.ConnectionString);

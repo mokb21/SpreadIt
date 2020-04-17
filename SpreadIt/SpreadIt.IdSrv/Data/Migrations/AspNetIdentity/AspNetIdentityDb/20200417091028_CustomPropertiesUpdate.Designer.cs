@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 {
     [DbContext(typeof(SpreadItIdSrvDbContext))]
-    partial class SpreadItIdSrvDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200417091028_CustomPropertiesUpdate")]
+    partial class CustomPropertiesUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

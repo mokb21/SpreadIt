@@ -10,7 +10,7 @@ namespace SpreadIt.Repository.Models
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(200)]
+        [MaxLength(500)]
         public string Path { get; set; }
         [Required]
         [ForeignKey("Post")]

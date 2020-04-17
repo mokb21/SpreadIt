@@ -17,5 +17,6 @@ namespace SpreadIt.Repository.Models
         public double Latitude { get; set; }
         [Required]
         public double Range { get; set; }
+        public ICollection<UserLocation> UserLocations { get; set; }
     }
 }

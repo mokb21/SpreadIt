@@ -27,6 +27,17 @@ namespace SpreadIt.Repository.Models
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
             UsersSeed(builder);
+
+            builder.Entity<UserLocation>()
+                .HasKey(ul => new { ul.UserId , ul.LocationId });
+            builder.Entity<UserLocation>()
+                .HasOne(ul => ul.User)
+                .WithMany(ul => ul.UserLocations)
+                .HasForeignKey(ul => ul.UserId);
+            builder.Entity<UserLocation>()
+                .HasOne(ul => ul.Location)
+                .WithMany(ul => ul.UserLocations)
+                .HasForeignKey(ul => ul.LocationId);
         }
 
         private void UsersSeed(ModelBuilder builder)
