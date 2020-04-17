@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
-using SpreadIt.IdSrv.Data;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.IdSrv
@@ -38,7 +37,7 @@ namespace SpreadIt.IdSrv
 
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContext<SpreadItIdSrvDbContext>(options =>
+            services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(Constants.SpreadItConstants.ConnectionString, sql => sql.MigrationsAssembly(migrationsAssembly))
             );
 
@@ -50,7 +49,7 @@ namespace SpreadIt.IdSrv
             {
                 options.SignIn.RequireConfirmedEmail = true;
             })
-            .AddEntityFrameworkStores<SpreadItIdSrvDbContext>()
+            .AddEntityFrameworkStores<IdentityContext>()
             .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>

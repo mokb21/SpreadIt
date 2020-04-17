@@ -14,15 +14,6 @@ namespace SpreadIt.IdSrv.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            //builder.ConfigureServices((context, services) => {
-            //    services.AddDbContext<SpreadItIdSrvDbContext>(options =>
-            //        options.UseSqlServer(
-            //            context.Configuration.GetConnectionString("SpreadItIdSrvDbContextConnection")));
-
-            //    services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //        .AddEntityFrameworkStores<SpreadItIdSrvDbContext>();
-            //});
-
             builder.ConfigureServices((context, services) =>
             {
 

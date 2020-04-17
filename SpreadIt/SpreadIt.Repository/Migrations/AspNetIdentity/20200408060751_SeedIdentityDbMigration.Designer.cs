@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
-namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
+namespace SpreadIt.Repository.Migrations.AspNetIdentity
 {
-    [DbContext(typeof(SpreadItIdSrvDbContext))]
-    partial class SpreadItIdSrvDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(IdentityContext))]
+    [Migration("20200408060751_SeedIdentityDbMigration")]
+    partial class SeedIdentityDbMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,7 +259,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SpreadIt.Repository.Models.ApplicationUser", b =>
+            modelBuilder.Entity("SpreadIt.IdSrv.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -276,19 +278,11 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -334,15 +328,15 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31d0f17b-d525-4410-9c8d-c370f893c46b",
+                            ConcurrencyStamp = "859cb4b2-73a9-4f36-9e16-0a6029794862",
                             Email = "AliceSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ALICESMITH@EMAIL.COM",
                             NormalizedUserName = "ALICE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAxY7kKbHG3NTL/GhsAiSbduNZg7nzjp0LNAYmkRm2msTEPx6MntBM0IxTa9VPDEog==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELupT4UAJQpAqRyLVN0z+bf6185OBX3AHTxCnucvf6DEdZ3/zXVaiRq7hLf7+RRQtQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2ef8c743-b182-494e-9742-27b39e301338",
+                            SecurityStamp = "80507424-0372-444a-b565-06dd9803897a",
                             TwoFactorEnabled = false,
                             UserName = "alice"
                         },
@@ -350,59 +344,18 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0654fbc5-76df-4344-865b-18ba3598bcc6",
+                            ConcurrencyStamp = "6636c06f-952d-4756-93a6-735a41b17602",
                             Email = "BobSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BOBSMITH@EMAIL.COM",
                             NormalizedUserName = "BOB",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOCuEdkI3G8wA4kJo2aLTJPyFvZ+0SuQocaNlV6/upNFtza/yFcpkWB/UgLtkmo+mQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHZyIhNjCvcxamIHlEjSMnQNeeztH9gFCW/ZdUpBRI0f7Z+U0V2Sk4boIldupN5+QA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c458663-d7e5-42a7-bbf1-913767c0c1b6",
+                            SecurityStamp = "94f6e9aa-0175-489a-84b6-f1337a8efd34",
                             TwoFactorEnabled = false,
                             UserName = "bob"
                         });
-                });
-
-            modelBuilder.Entity("SpreadIt.Repository.Models.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<double>("Range")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Location");
-                });
-
-            modelBuilder.Entity("SpreadIt.Repository.Models.UserLocation", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "LocationId");
-
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("UserLocation");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -416,7 +369,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -425,7 +378,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -440,7 +393,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -449,23 +402,8 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SpreadIt.Repository.Models.UserLocation", b =>
-                {
-                    b.HasOne("SpreadIt.Repository.Models.Location", "Location")
-                        .WithMany("UserLocations")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
-                        .WithMany("UserLocations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -16,7 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SpreadIt.Constants\SpreadIt.Constants.csproj" />
     <ProjectReference Include="..\SpreadIt.DTO\SpreadIt.DTO.csproj" />
-    <ProjectReference Include="..\SpreadIt.IdSrv\SpreadIt.IdSrv.csproj" />
     <ProjectReference Include="..\SpreadIt.Repository\SpreadIt.Repository.csproj" />
   </ItemGroup>
 

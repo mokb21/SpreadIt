@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
-namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
+namespace SpreadIt.Repository.Migrations.AspNetIdentity
 {
-    [DbContext(typeof(SpreadItIdSrvDbContext))]
+    [DbContext(typeof(IdentityContext))]
     [Migration("20200408060431_InitialIdentityDbMigration")]
     partial class InitialIdentityDbMigration
     {
@@ -152,7 +152,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SpreadIt.IdSrv.Models.ApplicationUser", b =>
+            modelBuilder.Entity("SpreadIt.Repository.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -228,7 +228,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -237,7 +237,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -261,7 +261,7 @@ namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SpreadIt.IdSrv.Models.ApplicationUser", null)
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

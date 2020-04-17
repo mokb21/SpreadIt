@@ -5,17 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SpreadIt.Repository.Models;
 
-namespace SpreadIt.IdSrv.Data
+namespace SpreadIt.Repository.Models
 {
-    public class SpreadItIdSrvDbContext : IdentityDbContext<ApplicationUser>
+    public class IdentityContext : IdentityDbContext<ApplicationUser>
     {
-        public SpreadItIdSrvDbContext()
+        public IdentityContext()
         {
 
         }
-        public SpreadItIdSrvDbContext(DbContextOptions<SpreadItIdSrvDbContext> options)
+        public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)
         {
         }
@@ -38,6 +37,13 @@ namespace SpreadIt.IdSrv.Data
                 .HasOne(ul => ul.Location)
                 .WithMany(ul => ul.UserLocations)
                 .HasForeignKey(ul => ul.LocationId);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.UseSqlServer(SpreadIt.Constants.SpreadItConstants.ConnectionString);
         }
 
         private void UsersSeed(ModelBuilder builder)

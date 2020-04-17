@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SpreadIt.IdSrv.Data.Migrations.AspNetIdentity.AspNetIdentityDb
+namespace SpreadIt.Repository.Migrations.AspNetIdentity
 {
     public partial class CustomPropertiesUpdate : Migration
     {

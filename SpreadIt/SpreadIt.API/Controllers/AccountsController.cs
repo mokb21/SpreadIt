@@ -12,7 +12,6 @@ using SpreadIt.Constants;
 using SpreadIt.Repository.Models;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
-using SpreadIt.IdSrv.Data;
 
 namespace SpreadIt.API.Controllers
 {
@@ -31,7 +30,7 @@ namespace SpreadIt.API.Controllers
         {
             _linkGenerator = linkGenerator;
             _userManager = userManager;
-            _userStore = new UserStore<ApplicationUser>(new SpreadItIdSrvDbContext());
+            _userStore = new UserStore<ApplicationUser>(new IdentityContext());
             _repository = new SpreadItRepository(
                new SpreadItContext());
         }

@@ -16,7 +16,6 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SpreadIt.API.Hubs;
-using SpreadIt.IdSrv.Data;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.API
@@ -51,12 +50,12 @@ namespace SpreadIt.API
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
-            services.AddDbContext<SpreadItIdSrvDbContext>(options =>
+            services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(
                       Constants.SpreadItConstants.ConnectionString)
                 );
             services.AddDefaultIdentity<ApplicationUser>()
-                .AddEntityFrameworkStores<SpreadItIdSrvDbContext>();
+                .AddEntityFrameworkStores<IdentityContext>();
 
             services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(o =>
             {
