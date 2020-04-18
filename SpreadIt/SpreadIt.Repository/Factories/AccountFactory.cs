@@ -28,7 +28,7 @@ namespace SpreadIt.Repository.Factories
                 Image = account.Image,
                 Locations = JsonConvert.SerializeObject(account.UserLocations?
                     .Where(a => a.UserId == account.Id)
-                    .Select(a => a.LocationId).ToList())
+                    .Select(a => _locationFactory.CreateLocation(a.Locations)).ToList())
             };
         }
 
@@ -41,7 +41,8 @@ namespace SpreadIt.Repository.Factories
                 Email = account.Email,
                 EmailConfirmed = true,
                 Name = account.Name,
-                Image = account.Image
+                Image = account.Image,
+                Id = account.Id
             };
         }
 

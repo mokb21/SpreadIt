@@ -195,7 +195,7 @@ namespace SpreadIt.API.Controllers
         {
             try
             {
-                if (post != null && !post.Id.Equals(0) && !post.CategoryId.Equals(0))
+                if (post != null && !post.Id.Equals(0))
                 {
                     post.LastUpdatedDate = DateTime.Now;
 

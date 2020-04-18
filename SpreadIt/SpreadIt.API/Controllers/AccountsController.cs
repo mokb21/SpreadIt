@@ -48,10 +48,14 @@ namespace SpreadIt.API.Controllers
                 if (!string.IsNullOrEmpty(id))
                 {
                     var user = await _userManager.FindByIdAsync(id);
+
                     if (user == null)
                         return NotFound();
                     else
+                    {
+                        user.UserLocations = _repository.GetUserLocations(user.Id);
                         return Ok(_accountFactory.CreateAccount(user));
+                    }
                 }
                 else
                 {
@@ -62,6 +66,9 @@ namespace SpreadIt.API.Controllers
                     }
 
                     var users = _userManager.Users;
+                    foreach (var user in _userManager.Users)
+                        user.UserLocations = _repository.GetUserLocations(user.Id);
+
                     users = users.ApplySort(sort);
 
                     var totalCount = users.Count();
@@ -112,7 +119,7 @@ namespace SpreadIt.API.Controllers
             }
             catch (Exception ex)
             {
-                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                _repository.InsertMessageLog(new MessageLog
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
@@ -148,18 +155,19 @@ namespace SpreadIt.API.Controllers
 
                 //Adding UserLocations
                 RepositoryActionStatus status = RepositoryActionStatus.Error;
+                ApplicationUser userAdded = null;
                 if (result.Succeeded)
                 {
-                    //Adding Image
-
-                    var userAdded = await _userManager.FindByNameAsync(account.UserName);
+                    userAdded = await _userManager.FindByNameAsync(account.UserName);
 
                     if (userAdded != null)
                     {
                         List<UserLocation> userLocations = new List<UserLocation>();
 
-                        var locations = JsonConvert.DeserializeObject<List<int>>(account.Locations);
-                        userLocations.AddRange(locations.Select(a => new UserLocation() { LocationId = a, UserId = userAdded.Id }));
+                        var locations = JsonConvert.DeserializeObject<DTO.Location[]>(account.Locations);
+
+                        userLocations.AddRange(locations.ToList()
+                            .Select(a => new UserLocation() { LocationId = a.Id, UserId = userAdded.Id }));
                         status = _repository.InsertUserLocation(userLocations);
                     }
                 }
@@ -175,12 +183,14 @@ namespace SpreadIt.API.Controllers
                             id = user.Id
                         });
 
-                    return Created(newAccountLink, _accountFactory.CreateAccount(user));
+                    userAdded.UserLocations = _repository.GetUserLocations(userAdded.Id);
+                    return Created(newAccountLink, _accountFactory.CreateAccount(userAdded));
                 }
                 else
                 {
-                    return BadRequest(new { error = result.Errors.ToList() });
+                    return StatusCode(StatusCodes.Status500InternalServerError);
                 }
+
             }
             catch (Exception ex)
             {
@@ -194,16 +204,100 @@ namespace SpreadIt.API.Controllers
             }
         }
 
-        [HttpDelete]
-        public IActionResult Delete(string id)
+        [HttpPut]
+        public async Task<IActionResult> PutAsync([FromForm] DTO.Account account)
         {
             try
             {
-                var user = _userManager.FindByIdAsync(id);
+                if (!string.IsNullOrEmpty(account.Id))
+                {
+                    //Update User
+                    if (Request.Form.Files != null && Request.Form.Files.Count > 0)
+                    {
+                        var file = Request.Form.Files[0];
+
+                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        var fullPath = Path.Combine(SpreadItConstants.UserImagesFolderPath, fileName);
+
+                        account.Image = fullPath;
+
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                    }
+
+                    var userDb = _accountFactory.CreateAccount(account);
+                    var user = await _userManager.FindByIdAsync(userDb.Id);
+                    IdentityResult result = IdentityResult.Success;
+                    if (user != null)
+                    {
+                        user.Name = userDb.Name;
+                        user.Email = userDb.Email;
+                        user.Image = userDb.Image;
+                        result = await _userManager.UpdateAsync(user);
+                    }
+                    
+                    RepositoryActionStatus status = RepositoryActionStatus.Error;
+                    if (result.Succeeded)
+                    {
+                        //Update UserLocations
+                        if (user != null)
+                        {
+                            List<UserLocation> userLocations = new List<UserLocation>();
+
+                            var locations = JsonConvert.DeserializeObject<DTO.Location[]>(account.Locations);
+
+                            userLocations.AddRange(locations.ToList()
+                                .Select(a => new UserLocation() { LocationId = a.Id, UserId = user.Id }));
+                            status = _repository.UpdateUserLocation(userLocations, user.Id);
+                        }
+                    }
+
+                    if (status == RepositoryActionStatus.Created)
+                    {
+                        var newAccountLink = _linkGenerator.GetPathByAction(
+                            HttpContext,
+                            action: "Get",
+                            controller: "Accounts",
+                            values: new
+                            {
+                                id = user.Id
+                            });
+
+                        user.UserLocations = _repository.GetUserLocations(user.Id);
+                        return Created(newAccountLink, _accountFactory.CreateAccount(user));
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError);
+                    }
+                }
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                {
+                    Project = (byte)ProjectType.API,
+                    Message = ex.Message,
+                    Method = "PutAsyncAccount"
+                });
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync(string id)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id);
                 if (user != null)
                 {
-                    var result = _userManager.DeleteAsync(user.Result);
-                    if (result.Result.Succeeded)
+                    var result = await _userManager.DeleteAsync(user);
+                    if (result.Succeeded)
                         return NoContent();
                     else
                         return NotFound();

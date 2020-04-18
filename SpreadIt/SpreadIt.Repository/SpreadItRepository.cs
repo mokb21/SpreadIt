@@ -591,6 +591,40 @@ namespace SpreadIt.Repository
             }
         }
 
+        public List<UserLocation> GetUserLocations(string userId)
+        {
+            try
+            {
+                return _ctx.UserLocation.Include(a => a.Locations).Where(a => a.UserId == userId).ToList();
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetUserLocations", Message = ex.Message });
+                return null;
+            }
+        }
+
+        public RepositoryActionStatus UpdateUserLocation(List<UserLocation> userLocations, string userId)
+        {
+            try
+            {
+                var oldLocations = GetUserLocations(userId);
+                if (oldLocations != null)
+                {
+                    _ctx.RemoveRange(oldLocations);
+                    _ctx.SaveChanges();
+                }
+                var insertResult = InsertUserLocation(userLocations);
+
+                return insertResult;
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "UpdateUserLocation", Message = ex.Message });
+                return RepositoryActionStatus.Error;
+            }
+        }
+
         #endregion
     }
 }

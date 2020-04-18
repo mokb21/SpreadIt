@@ -66,6 +66,9 @@ namespace SpreadIt.Repository
 
         #region UserLocation
         RepositoryActionStatus InsertUserLocation(List<UserLocation> userLocations);
+        RepositoryActionStatus UpdateUserLocation(List<UserLocation> userLocations, string userId);
+        List<UserLocation> GetUserLocations(string userId);
+
         #endregion
     }
 }
