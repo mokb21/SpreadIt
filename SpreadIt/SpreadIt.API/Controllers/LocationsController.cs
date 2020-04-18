@@ -13,7 +13,7 @@ using SpreadIt.Repository.Factories;
 
 namespace SpreadIt.API.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class LocationsController : ControllerBase
@@ -75,7 +75,7 @@ namespace SpreadIt.API.Controllers
                         var newLocationLink = _linkGenerator.GetPathByAction(
                             HttpContext,
                             action: "Get",
-                            controller: "Location",
+                            controller: "Locations",
                             values: new
                             {
                                 id = newlocation.Id

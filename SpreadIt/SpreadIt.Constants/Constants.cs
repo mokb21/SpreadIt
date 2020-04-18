@@ -15,5 +15,6 @@ namespace SpreadIt.Constants
 
         public const string ImagesFolderPath = "E://JuniorProject//PostsImages//";
 
+        public const string UserImagesFolderPath = "E://JuniorProject//UsersImages//";
     }
 }

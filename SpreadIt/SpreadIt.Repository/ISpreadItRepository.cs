@@ -1,4 +1,5 @@
-﻿using SpreadIt.Repository.Models;
+﻿using SpreadIt.Constants;
+using SpreadIt.Repository.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -61,6 +62,10 @@ namespace SpreadIt.Repository
         #region Posts Images
         RepositoryActionResult<PostImage> InsertImage(PostImage postImage);
         List<PostImage> GetImagesByPost(int? PostId);
+        #endregion
+
+        #region UserLocation
+        RepositoryActionStatus InsertUserLocation(List<UserLocation> userLocations);
         #endregion
     }
 }

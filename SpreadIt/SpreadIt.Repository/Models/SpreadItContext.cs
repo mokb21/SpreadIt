@@ -29,7 +29,7 @@ namespace SpreadIt.Repository.Models
                 .WithMany(ul => ul.UserLocations)
                 .HasForeignKey(ul => ul.UserId);
             builder.Entity<UserLocation>()
-                .HasOne(ul => ul.Location)
+                .HasOne(ul => ul.Locations)
                 .WithMany(ul => ul.UserLocations)
                 .HasForeignKey(ul => ul.LocationId);
 

@@ -132,11 +132,9 @@ namespace SpreadIt.API.Controllers
                     var pos = _postFactory.CreatePost(post);
                     var result = _repository.InsertPost(pos);
 
-                    if (result.Status == RepositoryActionStatus.Created && !pos.Id.Equals(0))
+                    if (result.Status == RepositoryActionStatus.Created)
                     {
                         var files = Request.Form.Files;
-                        //var folderName = Path.Combine("Resources", "Images");
-                        //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                         if (files.Any(f => f.Length == 0))
                         {
@@ -146,8 +144,6 @@ namespace SpreadIt.API.Controllers
                         foreach (var file in files)
                         {
                             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                            //var fullPath = Path.Combine(Con, fileName);
-                            //var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
                             var fullPath = Path.Combine(SpreadItConstants.ImagesFolderPath, fileName);
                             PostImage image = new PostImage()
                             {

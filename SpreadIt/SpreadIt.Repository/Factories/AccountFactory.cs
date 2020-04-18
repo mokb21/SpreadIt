@@ -1,4 +1,5 @@
-﻿using SpreadIt.Repository.Models;
+﻿using Newtonsoft.Json;
+using SpreadIt.Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -10,12 +11,24 @@ namespace SpreadIt.Repository.Factories
 {
     public class AccountFactory
     {
+        LocationFactory _locationFactory;
+        public AccountFactory()
+        {
+            _locationFactory = new LocationFactory();
+        }
+
         public DTO.Account CreateAccount(ApplicationUser account)
         {
             return new DTO.Account()
             {
+                Id = account.Id,
                 UserName = account.UserName,
                 Email = account.Email,
+                Name = account.Name,
+                Image = account.Image,
+                Locations = JsonConvert.SerializeObject(account.UserLocations?
+                    .Where(a => a.UserId == account.Id)
+                    .Select(a => a.LocationId).ToList())
             };
         }
 
@@ -24,9 +37,11 @@ namespace SpreadIt.Repository.Factories
         {
             return new ApplicationUser()
             {
-                 UserName = account.UserName,
-                 Email = account.Email,
-                 EmailConfirmed = true
+                UserName = account.UserName,
+                Email = account.Email,
+                EmailConfirmed = true,
+                Name = account.Name,
+                Image = account.Image
             };
         }
 

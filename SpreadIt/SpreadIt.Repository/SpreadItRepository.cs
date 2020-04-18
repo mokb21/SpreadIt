@@ -570,5 +570,27 @@ namespace SpreadIt.Repository
             }
         }
         #endregion
+
+        #region UserLocations
+        public RepositoryActionStatus InsertUserLocation(List<UserLocation> userLocations)
+        {
+            try
+            {
+                _ctx.UserLocation.AddRange(userLocations);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return RepositoryActionStatus.Created;
+                }
+                return RepositoryActionStatus.Error;
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertUserLocation", Message = ex.Message });
+                return RepositoryActionStatus.Error;
+            }
+        }
+
+        #endregion
     }
 }

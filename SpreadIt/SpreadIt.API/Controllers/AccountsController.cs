@@ -12,6 +12,9 @@ using SpreadIt.Constants;
 using SpreadIt.Repository.Models;
 using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
+using System.Net.Http.Headers;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace SpreadIt.API.Controllers
 {
@@ -23,6 +26,7 @@ namespace SpreadIt.API.Controllers
         UserStore<ApplicationUser> _userStore;
         ISpreadItRepository _repository;
         readonly LinkGenerator _linkGenerator;
+
         AccountFactory _accountFactory = new AccountFactory();
 
 
@@ -35,15 +39,15 @@ namespace SpreadIt.API.Controllers
                new SpreadItContext());
         }
 
-        public async Task<IActionResult> GetAsync(string userName, string sort = "UserName",
+        public async Task<IActionResult> GetAsync(string id, string sort = "UserName",
             string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
             {
-                if (!string.IsNullOrEmpty(userName))
+                if (!string.IsNullOrEmpty(id))
                 {
-                    var user = await _userManager.FindByNameAsync(userName);
+                    var user = await _userManager.FindByIdAsync(id);
                     if (user == null)
                         return NotFound();
                     else
@@ -119,19 +123,52 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] DTO.Account account)
+        public async Task<IActionResult> PostAsync([FromForm] DTO.Account account)
         {
             try
             {
-                var user = _accountFactory.CreateAccount(account);
+                //Adding User
+                if (Request.Form.Files != null)
+                {
+                    var file = Request.Form.Files[0];
 
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(SpreadItConstants.UserImagesFolderPath, fileName);
+
+                    account.Image = fullPath;
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                }
+
+                var user = _accountFactory.CreateAccount(account);
                 IdentityResult result = await _userManager.CreateAsync(user, account.Password);
 
+                //Adding UserLocations
+                RepositoryActionStatus status = RepositoryActionStatus.Error;
                 if (result.Succeeded)
+                {
+                    //Adding Image
+
+                    var userAdded = await _userManager.FindByNameAsync(account.UserName);
+
+                    if (userAdded != null)
+                    {
+                        List<UserLocation> userLocations = new List<UserLocation>();
+
+                        var locations = JsonConvert.DeserializeObject<List<int>>(account.Locations);
+                        userLocations.AddRange(locations.Select(a => new UserLocation() { LocationId = a, UserId = userAdded.Id }));
+                        status = _repository.InsertUserLocation(userLocations);
+                    }
+                }
+
+                if (status == RepositoryActionStatus.Created)
                 {
                     var newAccountLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "Get",
+                        action: "GetAsync",
                         controller: "Accounts",
                         values: new
                         {
@@ -156,5 +193,35 @@ namespace SpreadIt.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpDelete]
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                var user = _userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    var result = _userManager.DeleteAsync(user.Result);
+                    if (result.Result.Succeeded)
+                        return NoContent();
+                    else
+                        return NotFound();
+                }
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                {
+                    Project = (byte)ProjectType.API,
+                    Message = ex.Message,
+                    Method = "DeletePost"
+                });
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
     }
 }
