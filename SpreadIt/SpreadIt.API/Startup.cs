@@ -45,12 +45,12 @@ namespace SpreadIt.API
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
-            services.AddDbContext<IdentityContext>(options =>
+            services.AddDbContext<SpreadItContext>(options =>
                 options.UseSqlServer(
                       Constants.SpreadItConstants.ConnectionString)
                 );
             services.AddDefaultIdentity<ApplicationUser>()
-                .AddEntityFrameworkStores<IdentityContext>();
+                .AddEntityFrameworkStores<SpreadItContext>();
 
             services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(o =>
             {

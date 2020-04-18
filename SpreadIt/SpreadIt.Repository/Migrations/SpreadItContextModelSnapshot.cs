@@ -19,6 +19,244 @@ namespace SpreadIt.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "name",
+                            ClaimValue = "Alice Smith",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "given_name",
+                            ClaimValue = "Alice",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "family_name",
+                            ClaimValue = "Smith",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "email",
+                            ClaimValue = "AliceSmith@email.com",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClaimType = "website",
+                            ClaimValue = "http://alice.com",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "name",
+                            ClaimValue = "Bob Smith",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "given_name",
+                            ClaimValue = "Bob",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "family_name",
+                            ClaimValue = "Smith",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "email",
+                            ClaimValue = "BobSmith@email.com",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "website",
+                            ClaimValue = "http://bob.com",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "email_verified",
+                            ClaimValue = "True",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "email_verified",
+                            ClaimValue = "True",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClaimType = "address",
+                            ClaimValue = "{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }",
+                            UserId = "1"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "address",
+                            ClaimValue = "{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }",
+                            UserId = "2"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "location",
+                            ClaimValue = "somewhere",
+                            UserId = "1"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
             modelBuilder.Entity("SpreadIt.Repository.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -28,10 +266,12 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -51,10 +291,12 @@ namespace SpreadIt.Repository.Migrations
                         .HasMaxLength(500);
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -72,11 +314,54 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicationUser");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "bd4f466b-176d-41b7-a770-a03faadae935",
+                            Email = "AliceSmith@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ALICESMITH@EMAIL.COM",
+                            NormalizedUserName = "ALICE",
+                            PasswordHash = "AQAAAAEAACcQAAAAENDpWipFBM30rauTVLH2gPKgu/xrWlE84nUgQqj+dLpXTyijBTOpOsW1u7Ix6WUGug==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7f6e40bf-3705-4168-89ee-6c8a688ba86c",
+                            TwoFactorEnabled = false,
+                            UserName = "alice"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4544fb28-dcd9-4e9d-aea9-f6639712d109",
+                            Email = "BobSmith@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "BOBSMITH@EMAIL.COM",
+                            NormalizedUserName = "BOB",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ4zjpaMqVvzUi9jsd5rnjY7grQhl0/rAzLX55bXXvYzHb8EQTMvWqScwEwt5MbmAw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2c2266b3-99fd-4560-8c65-9134ed0d737e",
+                            TwoFactorEnabled = false,
+                            UserName = "bob"
+                        });
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.Category", b =>
@@ -366,6 +651,57 @@ namespace SpreadIt.Repository.Migrations
                     b.ToTable("UserLocation");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SpreadIt.Repository.Models.Comment", b =>
                 {
                     b.HasOne("SpreadIt.Repository.Models.Post", null)
@@ -427,7 +763,7 @@ namespace SpreadIt.Repository.Migrations
 
             modelBuilder.Entity("SpreadIt.Repository.Models.UserLocation", b =>
                 {
-                    b.HasOne("SpreadIt.Repository.Models.Location", "Location")
+                    b.HasOne("SpreadIt.Repository.Models.Location", "Locations")
                         .WithMany("UserLocations")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)

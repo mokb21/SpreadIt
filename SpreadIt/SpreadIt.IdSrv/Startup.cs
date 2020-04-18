@@ -37,7 +37,7 @@ namespace SpreadIt.IdSrv
 
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContext<IdentityContext>(options =>
+            services.AddDbContext<SpreadItContext>(options =>
                 options.UseSqlServer(Constants.SpreadItConstants.ConnectionString, sql => sql.MigrationsAssembly(migrationsAssembly))
             );
 
@@ -49,7 +49,7 @@ namespace SpreadIt.IdSrv
             {
                 options.SignIn.RequireConfirmedEmail = true;
             })
-            .AddEntityFrameworkStores<IdentityContext>()
+            .AddEntityFrameworkStores<SpreadItContext>()
             .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>

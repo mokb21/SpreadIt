@@ -34,7 +34,7 @@ namespace SpreadIt.API.Controllers
         {
             _linkGenerator = linkGenerator;
             _userManager = userManager;
-            _userStore = new UserStore<ApplicationUser>(new IdentityContext());
+            _userStore = new UserStore<ApplicationUser>(new SpreadItContext());
             _repository = new SpreadItRepository(
                new SpreadItContext());
         }
@@ -168,14 +168,14 @@ namespace SpreadIt.API.Controllers
                 {
                     var newAccountLink = _linkGenerator.GetPathByAction(
                         HttpContext,
-                        action: "GetAsync",
+                        action: "Get",
                         controller: "Accounts",
                         values: new
                         {
-                            userName = account.UserName
+                            id = user.Id
                         });
 
-                    return Created(newAccountLink, user);
+                    return Created(newAccountLink, _accountFactory.CreateAccount(user));
                 }
                 else
                 {
