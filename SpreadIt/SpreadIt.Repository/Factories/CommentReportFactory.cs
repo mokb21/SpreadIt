@@ -9,9 +9,12 @@ namespace SpreadIt.Repository.Factories
 {
     public class CommentReportFactory
     {
+        AccountFactory _accountFactory;
+        ReportCategoryFactory _reportCategoryFactory;
         public CommentReportFactory()
         {
-
+            _accountFactory = new AccountFactory();
+            _reportCategoryFactory = new ReportCategoryFactory();
         }
 
         public DTO.CommentReport CreateCommentReport(CommentReport commentReport)
@@ -23,7 +26,10 @@ namespace SpreadIt.Repository.Factories
                 CreatedDate = commentReport.CreatedDate,
                 CommentId = commentReport.CommentId,
                 ReportCategoryId = commentReport.ReportCategoryId,
-                IsActive = commentReport.IsActive
+                IsActive = commentReport.IsActive,
+                UserId = commentReport.UserId,
+                User = commentReport.User != null ? _accountFactory.CreateAccount(commentReport.User) : null,
+                ReportCategory = commentReport.ReportCategory != null ? _reportCategoryFactory.CreateReportCategory(commentReport.ReportCategory) : null
             };
         }
 
@@ -34,10 +40,11 @@ namespace SpreadIt.Repository.Factories
             {
                 Id = commentReport.Id,
                 Message = commentReport.Message,
-                CreatedDate = commentReport.CreatedDate,
+                CreatedDate = commentReport.CreatedDate == DateTime.MinValue ? DateTime.Now : commentReport.CreatedDate,
                 CommentId = commentReport.CommentId,
                 ReportCategoryId = commentReport.ReportCategoryId,
-                IsActive = commentReport.IsActive
+                IsActive = commentReport.IsActive,
+                UserId = commentReport.UserId
             };
         }
 

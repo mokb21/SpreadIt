@@ -36,6 +36,37 @@ namespace SpreadIt.Repository.Models
                 .HasOne(ul => ul.Locations)
                 .WithMany(ul => ul.UserLocations)
                 .HasForeignKey(ul => ul.LocationId);
+
+            //builder.Entity<Comment>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(b => b.Comments)
+            //    .HasForeignKey(c => c.UserId);
+
+            //builder.Entity<CommentRate>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(b => b.CommentRates)
+            //    .HasForeignKey(c => c.UserId);
+
+            //builder.Entity<CommentReport>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(b => b.CommentReports)
+            //    .HasForeignKey(c => c.UserId);
+
+            //builder.Entity<Post>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(b => b.Posts)
+            //    .HasForeignKey(c => c.UserId);
+
+            //builder.Entity<PostRate>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(b => b.PostRates)
+            //    .HasForeignKey(c => c.UserId);
+
+            //builder.Entity<PostReport>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(b => b.PostReports)
+            //    .HasForeignKey(c => c.UserId);
+
         }
 
         public DbSet<MessageLog> MessageLogs { get; set; }

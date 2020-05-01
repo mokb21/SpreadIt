@@ -24,6 +24,9 @@ namespace SpreadIt.Repository.Models
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
         #nullable enable
         public List<PostImage> PostImages { get; set; }
         public ICollection<Comment> Comments { get; set; }

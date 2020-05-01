@@ -18,9 +18,8 @@ namespace SpreadIt.API.Controllers
     {
 
         ISpreadItRepository _repository;
-        PostReportFactory _PostReportFactory = new PostReportFactory();
+        PostReportFactory _postReportFactory = new PostReportFactory();
         readonly LinkGenerator _linkGenerator;
-        //private ReportsCategoriesController reportsCategoriesController;
 
         public PostReportsController(LinkGenerator linkGenerator)
         {
@@ -31,18 +30,18 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpGet]
-        public IActionResult Get(int? postId, string sort = "CreatedDate", string fields = null,
+        public IActionResult Get(int? id, string sort = "CreatedDate", string fields = null,
              int page = 1, int pageSize = 5)
         {
             try
             {
-                if (postId.HasValue)
+                if (id.HasValue)
                 {
-                    var postReports = _repository.GetPostReportsByPostId(postId.Value);
+                    var postReports = _repository.GetPostReport(id.Value);
                     if (postReports == null)
                         return NotFound();
                     else
-                        return Ok(postReports.Select(element => _PostReportFactory.CreatePostReport(element)));
+                        return Ok(_postReportFactory.CreatePostReport(postReports));
                 }
                 else
                 {
@@ -53,8 +52,7 @@ namespace SpreadIt.API.Controllers
                     }
 
                     var postReports = _repository.GetPostReports()
-                                    .ApplySort(sort)
-                                    .Select(a => _PostReportFactory.CreateDataShapedObject(a, lstOfFields));
+                                    .ApplySort(sort);
 
                     var totalCount = postReports.Count();
                     var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
@@ -99,8 +97,9 @@ namespace SpreadIt.API.Controllers
 
 
                     return Ok(postReports
-                            .Skip(pageSize * (page - 1))
-                            .Take(pageSize));
+                        .Skip(pageSize * (page - 1))
+                        .Take(pageSize).ToList()
+                        .Select(a => _postReportFactory.CreateDataShapedObject(a, lstOfFields)));
                 }
             }
             catch (Exception ex)
@@ -124,12 +123,12 @@ namespace SpreadIt.API.Controllers
             {
                 if (postReport != null && !postReport.PostId.Equals(0) && !postReport.ReportCategoryId.Equals(0))
                 {
-                    var _postReport = _PostReportFactory.CreatePostReport(postReport);
+                    var _postReport = _postReportFactory.CreatePostReport(postReport);
                     var result = _repository.InsertPostReport(_postReport);
 
                     if (result.Status == RepositoryActionStatus.Created)
                     {
-                        var newPostReport = _PostReportFactory.CreatePostReport(result.Entity);
+                        var newPostReport = _postReportFactory.CreatePostReport(result.Entity);
                         var newCommentLink = _linkGenerator.GetPathByAction(
                         HttpContext,
                         action: "Get",
@@ -170,7 +169,7 @@ namespace SpreadIt.API.Controllers
 
                 if (result.Status == RepositoryActionStatus.Created)
                 {
-                    var UpdatedPostReport = _PostReportFactory.CreatePostReport(result.Entity);
+                    var UpdatedPostReport = _postReportFactory.CreatePostReport(result.Entity);
                     var newCommentLink = _linkGenerator.GetPathByAction(
                     HttpContext,
                     action: "Get",

@@ -16,10 +16,14 @@ namespace SpreadIt.Repository.Models
         [Required]
         [ForeignKey("ReportCategory")]
         public int ReportCategoryId { get; set; }
+        public ReportCategory ReportCategory { get; set; }
         [Required]
         [ForeignKey("Post")]
         public int PostId { get; set; }
         public bool IsActive { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         public PostReport()
         {

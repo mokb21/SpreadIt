@@ -10,8 +10,6 @@ using SpreadIt.Repository;
 using SpreadIt.Repository.Factories;
 using SpreadIt.API.Helpers;
 
-
-
 namespace SpreadIt.API.Controllers
 {
     [Route("api/[controller]")]
@@ -30,18 +28,18 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int? commentId, string sort = "CreatedDate", string fields = null,
+        public IActionResult Get(int? id, string sort = "CreatedDate", string fields = null,
             int page = 1, int pageSize = 5)
         {
             try
             {
-                if (commentId.HasValue)
+                if (id.HasValue)
                 {
-                    var commentReports = _repository.GetCommentReportsByCommentId(commentId.Value);
+                    var commentReports = _repository.GetCommentReport(id.Value);
                     if (commentReports == null)
                         return NotFound();
                     else
-                        return Ok(commentReports.Select(element => _commentReportFactory.CreateCommentReport(element)));
+                        return Ok(_commentReportFactory.CreateCommentReport(commentReports));
                 }
                 else
                 {
@@ -51,11 +49,10 @@ namespace SpreadIt.API.Controllers
                         lstOfFields = fields.ToLower().Split(',').ToList();
                     }
 
-                    var postReports = _repository.GetCommentReports()
-                                    .ApplySort(sort)
-                                    .Select(a => _commentReportFactory.CreateDataShapedObject(a, lstOfFields));
+                    var commentReports = _repository.GetCommentReports()
+                                    .ApplySort(sort);
 
-                    var totalCount = postReports.Count();
+                    var totalCount = commentReports.Count();
                     var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
 
 
@@ -97,9 +94,10 @@ namespace SpreadIt.API.Controllers
                         Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
 
 
-                    return Ok(postReports
-                            .Skip(pageSize * (page - 1))
-                            .Take(pageSize));
+                    return Ok(commentReports
+                        .Skip(pageSize * (page - 1))
+                        .Take(pageSize).ToList()
+                        .Select(a => _commentReportFactory.CreateDataShapedObject(a, lstOfFields)));
                 }
             }
             catch (Exception ex)
@@ -132,7 +130,7 @@ namespace SpreadIt.API.Controllers
                         var newCommentLink = _linkGenerator.GetPathByAction(
                         HttpContext,
                         action: "Get",
-                        controller: "PostReports",
+                        controller: "CommentReports",
                         values: new
                         {
                             id = newPostReport.Id

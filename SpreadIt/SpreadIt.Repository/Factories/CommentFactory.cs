@@ -10,10 +10,10 @@ namespace SpreadIt.Repository.Factories
 {
     public class CommentFactory
     {
-
+        AccountFactory _accountFactory;
         public CommentFactory()
         {
-
+            _accountFactory = new AccountFactory();
         }
 
         public DTO.Comment CreateComment(Comment comment)
@@ -24,7 +24,9 @@ namespace SpreadIt.Repository.Factories
                 Text = comment.Text,
                 IsBlocked = comment.IsBlocked,
                 IsDeleted = comment.IsDeleted,
-                PostId = comment.PostId
+                PostId = comment.PostId,
+                UserId = comment.UserId,
+                User = comment.User != null ? _accountFactory.CreateAccount(comment.User) : null,
             };
         }
 
@@ -37,7 +39,8 @@ namespace SpreadIt.Repository.Factories
                 Text = comment.Text,
                 IsBlocked = comment.IsBlocked,
                 IsDeleted = comment.IsDeleted,
-                PostId = comment.PostId
+                PostId = comment.PostId,
+                UserId = comment.UserId,
             };
         }
 

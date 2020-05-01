@@ -10,7 +10,7 @@ using SpreadIt.Repository.Models;
 namespace SpreadIt.Repository.Migrations
 {
     [DbContext(typeof(SpreadItContext))]
-    [Migration("20200418084235_InitMigration")]
+    [Migration("20200501080730_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -206,10 +206,12 @@ namespace SpreadIt.Repository.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -246,10 +248,12 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -336,15 +340,15 @@ namespace SpreadIt.Repository.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd4f466b-176d-41b7-a770-a03faadae935",
+                            ConcurrencyStamp = "e5d552fd-9091-4897-b3c3-6fd46c2ba10b",
                             Email = "AliceSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ALICESMITH@EMAIL.COM",
                             NormalizedUserName = "ALICE",
-                            PasswordHash = "AQAAAAEAACcQAAAAENDpWipFBM30rauTVLH2gPKgu/xrWlE84nUgQqj+dLpXTyijBTOpOsW1u7Ix6WUGug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA9/MEVb9KOS/DVWwWhMkPgiW43BOOu21B6Ir9x54KzAJGI0Wvnsgpmig40HsNB35A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7f6e40bf-3705-4168-89ee-6c8a688ba86c",
+                            SecurityStamp = "dd5683d6-317a-4d28-873b-9e0a184e91e3",
                             TwoFactorEnabled = false,
                             UserName = "alice"
                         },
@@ -352,15 +356,15 @@ namespace SpreadIt.Repository.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4544fb28-dcd9-4e9d-aea9-f6639712d109",
+                            ConcurrencyStamp = "8c5aa8bc-ad01-4574-a3d8-7c8f1f02f07e",
                             Email = "BobSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BOBSMITH@EMAIL.COM",
                             NormalizedUserName = "BOB",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ4zjpaMqVvzUi9jsd5rnjY7grQhl0/rAzLX55bXXvYzHb8EQTMvWqScwEwt5MbmAw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIb1T/3aqCiEKNdUe57nk0Yjb3g/7oI6GLKboIRJuUpNTLH0ZJKxAngTLax2M1h1MQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2c2266b3-99fd-4560-8c65-9134ed0d737e",
+                            SecurityStamp = "3fd461ce-9ffb-47e0-8209-9b563feb568a",
                             TwoFactorEnabled = false,
                             UserName = "bob"
                         });
@@ -404,9 +408,14 @@ namespace SpreadIt.Repository.Migrations
                         .HasColumnType("nvarchar(3000)")
                         .HasMaxLength(3000);
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -424,9 +433,14 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CommentRates");
                 });
@@ -454,9 +468,14 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<int>("ReportCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CommentReports");
                 });
@@ -544,9 +563,14 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -586,9 +610,14 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("PostRates");
                 });
@@ -616,9 +645,14 @@ namespace SpreadIt.Repository.Migrations
                     b.Property<int>("ReportCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("PostReports");
                 });
@@ -711,6 +745,10 @@ namespace SpreadIt.Repository.Migrations
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.CommentRate", b =>
@@ -718,6 +756,10 @@ namespace SpreadIt.Repository.Migrations
                     b.HasOne("SpreadIt.Repository.Models.Comment", null)
                         .WithMany("CommentRates")
                         .HasForeignKey("CommentId");
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.CommentReport", b =>
@@ -727,6 +769,10 @@ namespace SpreadIt.Repository.Migrations
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.Post", b =>
@@ -736,6 +782,10 @@ namespace SpreadIt.Repository.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.PostImage", b =>
@@ -752,6 +802,10 @@ namespace SpreadIt.Repository.Migrations
                     b.HasOne("SpreadIt.Repository.Models.Post", null)
                         .WithMany("PostRates")
                         .HasForeignKey("PostId");
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.PostReport", b =>
@@ -761,6 +815,10 @@ namespace SpreadIt.Repository.Migrations
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SpreadIt.Repository.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SpreadIt.Repository.Models.UserLocation", b =>

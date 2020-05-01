@@ -11,11 +11,14 @@ namespace SpreadIt.Repository.Factories
     public class PostFactory
     {
         PostImagesFactory _imageFactory;
-        CategoryFactory _CategoryFactory;
+        CategoryFactory _categoryFactory;
+        AccountFactory _accountFactory;
+
         public PostFactory()
         {
             _imageFactory = new PostImagesFactory();
-            _CategoryFactory = new CategoryFactory();
+            _categoryFactory = new CategoryFactory();
+            _accountFactory = new AccountFactory();
         }
 
         public DTO.Post CreatePost(Post post)
@@ -28,11 +31,12 @@ namespace SpreadIt.Repository.Factories
                 Description = post.Description,
                 Latitude = post.Latitude,
                 Longitude = post.Longitude,
-                CategoryId = post.CategoryId,
+                UserId = post.UserId,
                 IsBlocked = post.IsBlocked,
                 IsDeleted = post.IsDeleted,
                 PostImages = post.PostImages?.Select(element => _imageFactory.CreatePostImage(element)).ToList(),
-                Category = _CategoryFactory.CreateCategory(post.Category)
+                Category = post.Category != null ? _categoryFactory.CreateCategory(post.Category) : null,
+                User = post.User != null ? _accountFactory.CreateAccount(post.User) : null
             };
         }
 
@@ -46,8 +50,10 @@ namespace SpreadIt.Repository.Factories
                 Latitude = post.Latitude,
                 Longitude = post.Longitude,
                 CategoryId = post.CategoryId,
+                UserId = post.UserId,
                 IsBlocked = post.IsBlocked,
-                IsDeleted = post.IsDeleted
+                IsDeleted = post.IsDeleted,
+                CreatedDate = post.CreatedDate == DateTime.MinValue ? DateTime.Now : post.CreatedDate,
             };
         }
 

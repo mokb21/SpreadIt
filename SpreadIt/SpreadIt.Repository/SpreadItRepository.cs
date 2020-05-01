@@ -111,7 +111,8 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Include(post => post.PostImages).Include(post => post.Category).FirstOrDefault(e => e.Id == id);
+                return _ctx.Posts.Include(post => post.PostImages).Include(post => post.Category).Include(post => post.User)
+                    .Where(a => !a.IsDeleted).FirstOrDefault(e => e.Id == id);
             }
             catch (Exception ex)
             {
@@ -124,7 +125,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Include(a => a.PostImages).Include(a => a.Category)
+                return _ctx.Posts.Include(a => a.PostImages).Include(a => a.Category).Include(a => a.User)
                     .Where(a => !a.IsBlocked && !a.IsDeleted);
             }
             catch (Exception ex)
@@ -142,7 +143,7 @@ namespace SpreadIt.Repository
                 var result = _ctx.SaveChanges();
                 if (result > 0)
                 {
-                    var AddedPost = _ctx.Posts.Include(post => post.Category).FirstOrDefault(element => element.Id.Equals(post.Id));
+                    var AddedPost = GetPost(post.Id);
                     return new RepositoryActionResult<Post>(AddedPost, RepositoryActionStatus.Created);
                 }
                 else
@@ -207,7 +208,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Comments.Where(a => a.PostId == PostId && !a.IsBlocked && !a.IsDeleted).ToList();
+                return _ctx.Comments.Include(a => a.User).Where(a => a.PostId == PostId && !a.IsBlocked && !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {
@@ -369,7 +370,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.PostReports.Where(element => element.IsActive.Equals(true));
+                return _ctx.PostReports.Include(a=>a.User).Include(a => a.ReportCategory);
             }
             catch (Exception ex)
             {
@@ -378,15 +379,15 @@ namespace SpreadIt.Repository
             }
         }
 
-        public IQueryable<PostReport> GetPostReportsByPostId(int PostId)
+        public PostReport GetPostReport(int id)
         {
             try
             {
-                return _ctx.PostReports.Where(element => element.PostId.Equals(PostId));
+                return _ctx.PostReports.Include(a => a.User).Include(a => a.ReportCategory).FirstOrDefault(element => element.Id.Equals(id));
             }
             catch (Exception ex)
             {
-                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPostReportsByPostId", Message = ex.Message });
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetPostReport", Message = ex.Message });
                 return null;
             }
         }
@@ -438,7 +439,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.CommentReports;
+                return _ctx.CommentReports.Include(a => a.User).Include(a => a.ReportCategory);
             }
             catch (Exception ex)
             {
@@ -446,16 +447,15 @@ namespace SpreadIt.Repository
                 return null;
             }
         }
-        public IQueryable<CommentReport> GetCommentReportsByCommentId(int CommentId)
+        public CommentReport GetCommentReport(int id)
         {
             try
             {
-                return _ctx.CommentReports.Where(e => e.CommentId.Equals(CommentId)
-                    && e.IsActive);
+                return _ctx.CommentReports.Include(a=>a.User).Include(a => a.ReportCategory).FirstOrDefault(e => e.Id.Equals(id));
             }
             catch (Exception ex)
             {
-                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetCommentReportsByCommentId", Message = ex.Message });
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "GetCommentReport", Message = ex.Message });
                 return null;
             }
         }

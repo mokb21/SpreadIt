@@ -151,8 +151,8 @@ namespace SpreadIt.Repository.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -196,8 +196,8 @@ namespace SpreadIt.Repository.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -224,7 +224,8 @@ namespace SpreadIt.Repository.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     Longitude = table.Column<double>(nullable: false),
                     Latitude = table.Column<double>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -235,6 +236,12 @@ namespace SpreadIt.Repository.Migrations
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Posts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,7 +277,8 @@ namespace SpreadIt.Repository.Migrations
                     Text = table.Column<string>(maxLength: 3000, nullable: false),
                     IsBlocked = table.Column<bool>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    PostId = table.Column<int>(nullable: false)
+                    PostId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -281,6 +289,12 @@ namespace SpreadIt.Repository.Migrations
                         principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -310,6 +324,7 @@ namespace SpreadIt.Repository.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<byte>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     PostId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -319,6 +334,12 @@ namespace SpreadIt.Repository.Migrations
                         name: "FK_PostRates_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PostRates_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -333,7 +354,8 @@ namespace SpreadIt.Repository.Migrations
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ReportCategoryId = table.Column<int>(nullable: false),
                     PostId = table.Column<int>(nullable: false),
-                    IsActive = table.Column<bool>(nullable: false)
+                    IsActive = table.Column<bool>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -344,6 +366,12 @@ namespace SpreadIt.Repository.Migrations
                         principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PostReports_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -353,6 +381,7 @@ namespace SpreadIt.Repository.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<byte>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     CommentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -362,6 +391,12 @@ namespace SpreadIt.Repository.Migrations
                         name: "FK_CommentRates_Comments_CommentId",
                         column: x => x.CommentId,
                         principalTable: "Comments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CommentRates_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -376,7 +411,8 @@ namespace SpreadIt.Repository.Migrations
                     Message = table.Column<string>(maxLength: 3000, nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     ReportCategoryId = table.Column<int>(nullable: false),
-                    IsActive = table.Column<bool>(nullable: false)
+                    IsActive = table.Column<bool>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -387,17 +423,23 @@ namespace SpreadIt.Repository.Migrations
                         principalTable: "Comments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CommentReports_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Image", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "bd4f466b-176d-41b7-a770-a03faadae935", "AliceSmith@email.com", true, null, false, null, null, "ALICESMITH@EMAIL.COM", "ALICE", "AQAAAAEAACcQAAAAENDpWipFBM30rauTVLH2gPKgu/xrWlE84nUgQqj+dLpXTyijBTOpOsW1u7Ix6WUGug==", null, false, "7f6e40bf-3705-4168-89ee-6c8a688ba86c", false, "alice" });
+                values: new object[] { "1", 0, "e5d552fd-9091-4897-b3c3-6fd46c2ba10b", "AliceSmith@email.com", true, null, false, null, null, "ALICESMITH@EMAIL.COM", "ALICE", "AQAAAAEAACcQAAAAEA9/MEVb9KOS/DVWwWhMkPgiW43BOOu21B6Ir9x54KzAJGI0Wvnsgpmig40HsNB35A==", null, false, "dd5683d6-317a-4d28-873b-9e0a184e91e3", false, "alice" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Image", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2", 0, "4544fb28-dcd9-4e9d-aea9-f6639712d109", "BobSmith@email.com", true, null, false, null, null, "BOBSMITH@EMAIL.COM", "BOB", "AQAAAAEAACcQAAAAEJ4zjpaMqVvzUi9jsd5rnjY7grQhl0/rAzLX55bXXvYzHb8EQTMvWqScwEwt5MbmAw==", null, false, "2c2266b3-99fd-4560-8c65-9134ed0d737e", false, "bob" });
+                values: new object[] { "2", 0, "8c5aa8bc-ad01-4574-a3d8-7c8f1f02f07e", "BobSmith@email.com", true, null, false, null, null, "BOBSMITH@EMAIL.COM", "BOB", "AQAAAAEAACcQAAAAEIb1T/3aqCiEKNdUe57nk0Yjb3g/7oI6GLKboIRJuUpNTLH0ZJKxAngTLax2M1h1MQ==", null, false, "3fd461ce-9ffb-47e0-8209-9b563feb568a", false, "bob" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserClaims",
@@ -466,14 +508,29 @@ namespace SpreadIt.Repository.Migrations
                 column: "CommentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CommentRates_UserId",
+                table: "CommentRates",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CommentReports_CommentId",
                 table: "CommentReports",
                 column: "CommentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CommentReports_UserId",
+                table: "CommentReports",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_PostId",
                 table: "Comments",
                 column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostImages_PostId",
@@ -486,14 +543,29 @@ namespace SpreadIt.Repository.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PostRates_UserId",
+                table: "PostRates",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PostReports_PostId",
                 table: "PostReports",
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PostReports_UserId",
+                table: "PostReports",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Posts_CategoryId",
                 table: "Posts",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_UserId",
+                table: "Posts",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLocation_LocationId",
@@ -552,13 +624,13 @@ namespace SpreadIt.Repository.Migrations
                 name: "Locations");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

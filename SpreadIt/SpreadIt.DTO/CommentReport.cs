@@ -12,5 +12,8 @@ namespace SpreadIt.DTO
         public int ReportCategoryId { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
+        public string UserId { get; set; }
+        public Account User { get; set; }
+        public ReportCategory ReportCategory { get; set; }
     }
 }

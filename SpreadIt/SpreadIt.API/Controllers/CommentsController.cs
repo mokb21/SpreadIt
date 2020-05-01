@@ -65,16 +65,8 @@ namespace SpreadIt.API.Controllers
                     if (result.Status == RepositoryActionStatus.Created)
                     {
                         var newComment = _commentFactory.CreateComment(result.Entity);
-                        var newCommentLink = _linkGenerator.GetPathByAction(
-                        HttpContext,
-                        action: "Get",
-                        controller: "Comments",
-                        values: new
-                        {
-                            id = newComment.Id
-                        });
 
-                        return Created(newCommentLink, newComment);
+                        return Created("", newComment);
                     }
                     else
                         return StatusCode(StatusCodes.Status500InternalServerError);
@@ -108,14 +100,6 @@ namespace SpreadIt.API.Controllers
                     if (result.Status == RepositoryActionStatus.Updated)
                     {
                         var newComment = _commentFactory.CreateComment(result.Entity);
-                        var newCommentLink = _linkGenerator.GetPathByAction(
-                        HttpContext,
-                        action: "Get",
-                        controller: "Comments",
-                        values: new
-                        {
-                            id = newComment.Id
-                        });
 
                         return Ok(newComment);
                     }

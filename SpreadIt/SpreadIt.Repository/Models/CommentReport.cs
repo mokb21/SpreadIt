@@ -8,10 +8,6 @@ namespace SpreadIt.Repository.Models
 {
     public partial class CommentReport
     {
-        public CommentReport()
-        {
-            CreatedDate = DateTime.Now;
-        }
         public int Id { get; set; }
         [Required]
         [ForeignKey("Comment")]
@@ -22,6 +18,14 @@ namespace SpreadIt.Repository.Models
         [Required]
         [ForeignKey("ReportCategory")]
         public int ReportCategoryId { get; set; }
+        public ReportCategory ReportCategory { get; set; }
         public bool IsActive { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
+        public CommentReport()
+        {
+            CreatedDate = DateTime.Now;
+        }
     }
 }

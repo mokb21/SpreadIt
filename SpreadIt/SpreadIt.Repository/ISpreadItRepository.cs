@@ -42,14 +42,14 @@ namespace SpreadIt.Repository
 
         #region Post Reports
         IQueryable<PostReport> GetPostReports();
-        IQueryable<PostReport> GetPostReportsByPostId(int PostId);
+        PostReport GetPostReport(int id);
         RepositoryActionResult<PostReport> InsertPostReport(PostReport postReport);
         RepositoryActionResult<PostReport> ChangePostReportStatus(int id);
         #endregion Post Reports
 
         #region Comment Reports
         public IQueryable<CommentReport> GetCommentReports();
-        public IQueryable<CommentReport> GetCommentReportsByCommentId(int CommentId);
+        public CommentReport GetCommentReport(int id);
         public RepositoryActionResult<CommentReport> InsertCommentReport(CommentReport commentReport);
         public RepositoryActionResult<CommentReport> ChangeCommentReportStatus(int id);
         #endregion

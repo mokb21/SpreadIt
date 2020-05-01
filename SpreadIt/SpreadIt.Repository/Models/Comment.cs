@@ -14,8 +14,12 @@ namespace SpreadIt.Repository.Models
         public string Text { get; set; }
         public bool IsBlocked { get; set; }
         public bool IsDeleted { get; set; }
+        [Required]
         [ForeignKey("Post")]
         public int PostId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
         public ICollection<CommentRate> CommentRates { get; set; }
         public ICollection<CommentReport> CommentReports { get; set; }
     }

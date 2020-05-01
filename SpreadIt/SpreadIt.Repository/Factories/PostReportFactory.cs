@@ -10,10 +10,13 @@ namespace SpreadIt.Repository.Factories
 {
     public class PostReportFactory
     {
-        private Factories.ReportCategoryFactory ReportCategoryFactory;
+        AccountFactory _accountFactory;
+        ReportCategoryFactory _reportCategoryFactory;
+
         public PostReportFactory()
         {
-
+            _accountFactory = new AccountFactory();
+            _reportCategoryFactory = new ReportCategoryFactory();
         }
 
         public DTO.PostReport CreatePostReport(PostReport postReport)
@@ -25,8 +28,10 @@ namespace SpreadIt.Repository.Factories
                 CreatedDate = postReport.CreatedDate,
                 PostId = postReport.PostId,
                 ReportCategoryId = postReport.ReportCategoryId,
-                IsActive = postReport.IsActive
-                //ReportCategory = ReportCategoryFactory.CreateReportCategory(new ReportCategory())
+                IsActive = postReport.IsActive,
+                UserId = postReport.UserId,
+                User = postReport.User != null ? _accountFactory.CreateAccount(postReport.User) : null,
+                ReportCategory = postReport.ReportCategory != null ? _reportCategoryFactory.CreateReportCategory(postReport.ReportCategory) : null,
             };
         }
 
@@ -37,10 +42,11 @@ namespace SpreadIt.Repository.Factories
             {
                 Id = postReport.Id,
                 Message = postReport.Message,
-                //CreatedDate = postReport.CreatedDate,
+                CreatedDate = postReport.CreatedDate == DateTime.MinValue ? DateTime.Now : postReport.CreatedDate,
                 PostId = postReport.PostId,
                 ReportCategoryId = postReport.ReportCategoryId,
-                IsActive = postReport.IsActive
+                IsActive = postReport.IsActive,
+                UserId = postReport.UserId
             };
         }
 
