@@ -370,7 +370,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.PostReports.Include(a=>a.User).Include(a => a.ReportCategory);
+                return _ctx.PostReports.Include(a => a.User).Include(a => a.ReportCategory);
             }
             catch (Exception ex)
             {
@@ -451,7 +451,7 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.CommentReports.Include(a=>a.User).Include(a => a.ReportCategory).FirstOrDefault(e => e.Id.Equals(id));
+                return _ctx.CommentReports.Include(a => a.User).Include(a => a.ReportCategory).FirstOrDefault(e => e.Id.Equals(id));
             }
             catch (Exception ex)
             {
@@ -624,7 +624,70 @@ namespace SpreadIt.Repository
                 return RepositoryActionStatus.Error;
             }
         }
+        #endregion
 
+        #region Post Rating
+        public RepositoryActionResult<PostRate> InsertPostRate(PostRate postRate)
+        {
+            try
+            {
+                var oldRate = _ctx.PostRates.FirstOrDefault(a => a.UserId == postRate.UserId && a.PostId == postRate.PostId);
+                if (oldRate == null)
+                    _ctx.PostRates.Add(postRate);
+                else
+                {
+                    oldRate.Status = postRate.Status;
+                    _ctx.PostRates.Update(oldRate);
+                }
+
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<PostRate>(postRate, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<PostRate>(postRate, RepositoryActionStatus.NothingModified, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "ChangePostRatingState", Message = ex.Message });
+                return new RepositoryActionResult<PostRate>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
+        #endregion
+
+        #region Comment Rating
+        public RepositoryActionResult<CommentRate> InsertCommentRate(CommentRate commentRate)
+        {
+            try
+            {
+                var oldRate = _ctx.CommentRates.FirstOrDefault(a => a.UserId == commentRate.UserId && a.CommentId == commentRate.CommentId);
+                if (oldRate == null)
+                    _ctx.CommentRates.Add(commentRate);
+                else
+                {
+                    oldRate.Status = commentRate.Status;
+                    _ctx.CommentRates.Update(oldRate);
+                }
+
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    return new RepositoryActionResult<CommentRate>(commentRate, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<CommentRate>(commentRate, RepositoryActionStatus.NothingModified, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "ChangeCommentRatingState", Message = ex.Message });
+                return new RepositoryActionResult<CommentRate>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
         #endregion
     }
 }

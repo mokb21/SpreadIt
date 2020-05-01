@@ -14,5 +14,7 @@ namespace SpreadIt.Repository.Models
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+        [ForeignKey("Comment")]
+        public int CommentId { get; set; }
     }
 }

@@ -70,5 +70,13 @@ namespace SpreadIt.Repository
         List<UserLocation> GetUserLocations(string userId);
 
         #endregion
+
+        #region Post Rating
+        RepositoryActionResult<PostRate> InsertPostRate(PostRate postRate);
+        #endregion
+
+        #region Comment Rating
+        RepositoryActionResult<CommentRate> InsertCommentRate(CommentRate commentRate);
+        #endregion
     }
 }
