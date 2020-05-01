@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpreadIt.Repository.Models;
 
 namespace SpreadIt.Repository.Migrations
 {
     [DbContext(typeof(SpreadItContext))]
-    partial class SpreadItContextModelSnapshot : ModelSnapshot
+    [Migration("20200501101540_AddingCommentCreateDate")]
+    partial class AddingCommentCreateDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -338,15 +340,15 @@ namespace SpreadIt.Repository.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e62b0609-d983-4de3-99e6-361ce1e9e39c",
+                            ConcurrencyStamp = "ebbd8d93-efa6-4abc-964a-96b632aef92d",
                             Email = "AliceSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ALICESMITH@EMAIL.COM",
                             NormalizedUserName = "ALICE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMz5fTw/uAkCAiFvE0uU40onqRa8Q4IELAkYdN5sFFU3sGmEm3heTKzSIsyDaKV4WQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKI5TfOwHIbvLp60YDGOm+RMRMkrGhuqFcLHnKpHVjXeWBCJaUHd7JAKFatPS98PDA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "12773ec5-0b57-41b9-9412-4f92a355f298",
+                            SecurityStamp = "11c0a646-bcff-4765-92e6-1aeb8b08a6fb",
                             TwoFactorEnabled = false,
                             UserName = "alice"
                         },
@@ -354,15 +356,15 @@ namespace SpreadIt.Repository.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd397da2-14d4-43bf-b973-589586d9b9d8",
+                            ConcurrencyStamp = "0d8f08ed-d6f0-4596-b8cf-118907c1bb4a",
                             Email = "BobSmith@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BOBSMITH@EMAIL.COM",
                             NormalizedUserName = "BOB",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI0G+hYodys3KhlhQRGdVjVu50OBNA9cYzibToLvpJXkFGRk6RJfkKvQpeVKScDg4A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHKSWd/uIeim2nuFD2fqcildJ/VenJZRpWv01sLyq58S2oaKykotM8n7g+ECW/Wc4w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8f2eee1a-03e3-4d55-b970-56510e6969d3",
+                            SecurityStamp = "bbe43499-eb3d-4b43-ad4a-8e688ef6f224",
                             TwoFactorEnabled = false,
                             UserName = "bob"
                         });

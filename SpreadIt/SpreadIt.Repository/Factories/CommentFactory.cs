@@ -41,6 +41,7 @@ namespace SpreadIt.Repository.Factories
                 IsDeleted = comment.IsDeleted,
                 PostId = comment.PostId,
                 UserId = comment.UserId,
+                CreatedDate = comment.CreatedDate == DateTime.MinValue ? DateTime.Now : comment.CreatedDate
             };
         }
 

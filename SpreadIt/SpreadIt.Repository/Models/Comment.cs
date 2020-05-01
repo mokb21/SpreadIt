@@ -14,6 +14,7 @@ namespace SpreadIt.Repository.Models
         public string Text { get; set; }
         public bool IsBlocked { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTime CreatedDate { get; set; }
         [Required]
         [ForeignKey("Post")]
         public int PostId { get; set; }
