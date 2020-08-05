@@ -34,6 +34,7 @@ namespace SpreadIt.Repository.Factories
                 UserId = post.UserId,
                 IsBlocked = post.IsBlocked,
                 IsDeleted = post.IsDeleted,
+                CategoryId = post.CategoryId,
                 PostImages = post.PostImages?.Select(element => _imageFactory.CreatePostImage(element)).ToList(),
                 Category = post.Category != null ? _categoryFactory.CreateCategory(post.Category) : null,
                 User = post.User != null ? _accountFactory.CreateAccount(post.User) : null
