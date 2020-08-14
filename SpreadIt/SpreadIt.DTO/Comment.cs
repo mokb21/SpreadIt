@@ -14,5 +14,7 @@ namespace SpreadIt.DTO
         public string UserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public Account User { get; set; }
+        public int TotalLikes { get; set; }
+        public int TotalDisLikes { get; set; }
     }
 }

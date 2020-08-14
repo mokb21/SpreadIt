@@ -37,7 +37,13 @@ namespace SpreadIt.Repository.Factories
                 CategoryId = post.CategoryId,
                 PostImages = post.PostImages?.Select(element => _imageFactory.CreatePostImage(element)).ToList(),
                 Category = post.Category != null ? _categoryFactory.CreateCategory(post.Category) : null,
-                User = post.User != null ? _accountFactory.CreateAccount(post.User) : null
+                User = post.User != null ? _accountFactory.CreateAccount(post.User) : null,
+
+                TotalLikes = post.PostRates == null ? 0 :
+                    post.PostRates.Where(a => a.Status == (byte)Constants.RatingStatus.Like).Count(),
+
+                TotalDisLikes = post.PostRates == null ? 0 :
+                    post.PostRates.Where(a => a.Status == (byte)Constants.RatingStatus.Dislike).Count(),
             };
         }
 

@@ -111,7 +111,10 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Include(post => post.PostImages).Include(post => post.Category).Include(post => post.User)
+                return _ctx.Posts.Include(post => post.PostImages)
+                    .Include(post => post.Category)
+                    .Include(post => post.User)
+                    .Include(post => post.PostRates)
                     .Where(a => !a.IsDeleted).FirstOrDefault(e => e.Id == id);
             }
             catch (Exception ex)
@@ -125,7 +128,10 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Include(a => a.PostImages).Include(a => a.Category).Include(a => a.User)
+                return _ctx.Posts.Include(a => a.PostImages)
+                    .Include(a => a.Category)
+                    .Include(a => a.User)
+                    .Include(post => post.PostRates)
                     .Where(a => !a.IsBlocked && !a.IsDeleted);
             }
             catch (Exception ex)
@@ -208,7 +214,9 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Comments.Include(a => a.User).Where(a => a.PostId == PostId && !a.IsBlocked && !a.IsDeleted).ToList();
+                return _ctx.Comments.Include(a => a.User)
+                    .Include(a => a.CommentRates)
+                    .Where(a => a.PostId == PostId && !a.IsBlocked && !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {

@@ -18,6 +18,7 @@ namespace SpreadIt.Repository.Factories
 
         public DTO.Comment CreateComment(Comment comment)
         {
+
             return new DTO.Comment()
             {
                 Id = comment.Id,
@@ -27,6 +28,12 @@ namespace SpreadIt.Repository.Factories
                 PostId = comment.PostId,
                 UserId = comment.UserId,
                 User = comment.User != null ? _accountFactory.CreateAccount(comment.User) : null,
+
+                TotalLikes = comment.CommentRates == null ? 0 :
+                    comment.CommentRates.Where(a => a.Status == (byte)Constants.RatingStatus.Like).Count(),
+
+                TotalDisLikes = comment.CommentRates == null ? 0 :
+                    comment.CommentRates.Where(a => a.Status == (byte)Constants.RatingStatus.Dislike).Count(),
             };
         }
 

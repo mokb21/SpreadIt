@@ -19,5 +19,7 @@ namespace SpreadIt.DTO
         public List<PostImage> PostImages { get; set; }
         public Category Category { get; set; }
         public Account User { get; set; }
+        public int TotalLikes { get; set; }
+        public int TotalDisLikes { get; set; }
     }   
 }
