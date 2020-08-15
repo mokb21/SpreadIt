@@ -160,7 +160,7 @@ namespace SpreadIt.IdSrv.Data
                     {
                         Id = 1,
                         Scope = "spreadItAPI",
-                        ClientId = 1
+                        ClientId = 1,
                     });
 
             builder.Entity<ClientSecret>()
@@ -172,6 +172,55 @@ namespace SpreadIt.IdSrv.Data
                             Type = "SharedSecret",
                             ClientId = 1
                         });
+
+
+            builder.Entity<Client>()
+                .HasData(
+                    new Client
+                    {
+                        Id = 2,
+                        Enabled = true,
+                        ClientId = "mobileClient",
+                        ProtocolType = "oidc",
+                        RequireClientSecret = true,
+                        RequireConsent = true,
+                        ClientName = "Client to mobile app",
+                        Description = null,
+                        AllowRememberConsent = true,
+                        AlwaysIncludeUserClaimsInIdToken = false,
+                        RequirePkce = false,
+                        AllowAccessTokensViaBrowser = true,
+                        AllowOfflineAccess = true,
+                    });
+
+            builder.Entity<ClientGrantType>()
+                .HasData(
+                    new ClientGrantType
+                    {
+                        Id = 2,
+                        GrantType = "client_credentials",
+                        ClientId = 2
+                    });
+
+            builder.Entity<ClientScope>()
+                .HasData(
+                    new ClientScope
+                    {
+                        Id = 2,
+                        Scope = "spreadItAPI",
+                        ClientId = 2,
+                    });
+
+            builder.Entity<ClientSecret>()
+                .HasData(
+                        new ClientSecret
+                        {
+                            Id = 2,
+                            Value = "secret".ToSha256(),
+                            Type = "SharedSecret",
+                            ClientId = 2
+                        });
+
 
             //builder.Entity<ClientPostLogoutRedirectUri>()
             //    .HasData(
