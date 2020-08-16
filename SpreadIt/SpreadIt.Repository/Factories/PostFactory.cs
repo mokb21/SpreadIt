@@ -66,7 +66,6 @@ namespace SpreadIt.Repository.Factories
 
         public object CreateDataShapedObject(Post post, List<string> lstOfFields)
         {
-
             return CreateDataShapedObject(CreatePost(post), lstOfFields);
         }
 

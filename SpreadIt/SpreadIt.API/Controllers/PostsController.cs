@@ -145,9 +145,11 @@ namespace SpreadIt.API.Controllers
                         {
                             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                             var fullPath = Path.Combine(SpreadItConstants.ImagesFolderPath, fileName);
+                            var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/{Constants.SpreadItConstants.PostImagesFolderGet}//";
+
                             PostImage image = new PostImage()
                             {
-                                Path = fullPath,
+                                Path = baseUrl + fileName,
                                 PostId = pos.Id
                             };
 

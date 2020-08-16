@@ -19,7 +19,7 @@ namespace SpreadIt.Repository.Factories
             return new DTO.PostImage()
             {
                 Id = postImage.Id,
-                Path = Constants.SpreadItConstants.APIURI + postImage.Path.Replace("\\", "/"),
+                Path = postImage.Path,
                 PostId = postImage.PostId
             };
         }

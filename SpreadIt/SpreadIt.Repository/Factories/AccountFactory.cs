@@ -42,7 +42,8 @@ namespace SpreadIt.Repository.Factories
                 EmailConfirmed = true,
                 Name = account.Name,
                 Image = account.Image,
-                Id = account.Id
+                Id = account.Id,
+
             };
         }
 

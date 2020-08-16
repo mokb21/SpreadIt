@@ -142,7 +142,8 @@ namespace SpreadIt.API.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(SpreadItConstants.UserImagesFolderPath, fileName);
 
-                    account.Image = fullPath;
+                    var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/{Constants.SpreadItConstants.UserImagesFolderGet}//";
+                    account.Image = baseUrl + fileName;
 
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
@@ -151,6 +152,7 @@ namespace SpreadIt.API.Controllers
                 }
 
                 var user = _accountFactory.CreateAccount(account);
+                user.Id = Guid.NewGuid().ToString();
                 IdentityResult result = await _userManager.CreateAsync(user, account.Password);
 
                 //Adding UserLocations
@@ -219,7 +221,8 @@ namespace SpreadIt.API.Controllers
                         var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                         var fullPath = Path.Combine(SpreadItConstants.UserImagesFolderPath, fileName);
 
-                        account.Image = fullPath;
+                        var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/{Constants.SpreadItConstants.UserImagesFolderGet}//";
+                        account.Image = baseUrl + fileName;
 
                         using (var stream = new FileStream(fullPath, FileMode.Create))
                         {
@@ -237,7 +240,7 @@ namespace SpreadIt.API.Controllers
                         user.Image = userDb.Image;
                         result = await _userManager.UpdateAsync(user);
                     }
-                    
+
                     RepositoryActionStatus status = RepositoryActionStatus.Error;
                     if (result.Succeeded)
                     {
