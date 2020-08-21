@@ -21,6 +21,7 @@ namespace SpreadIt.Repository.Factories
             _categoryFactory = new CategoryFactory();
             _accountFactory = new AccountFactory();
             _categoryFactory = new CategoryFactory();
+            _commentFactory = new CommentFactory();
         }
 
         public DTO.Post CreatePost(Post post, string userId)
