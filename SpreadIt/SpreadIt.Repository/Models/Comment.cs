@@ -21,6 +21,7 @@ namespace SpreadIt.Repository.Models
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+        public Post Post { get; set; }
         public ICollection<CommentRate> CommentRates { get; set; }
         public ICollection<CommentReport> CommentReports { get; set; }
     }

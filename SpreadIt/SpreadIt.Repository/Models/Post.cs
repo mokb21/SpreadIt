@@ -36,6 +36,7 @@ namespace SpreadIt.Repository.Models
         public Post()
         {
             CreatedDate = DateTime.Now;
+            LastUpdatedDate = DateTime.Now;
             PostImages = new List<PostImage>();
         }
     }
