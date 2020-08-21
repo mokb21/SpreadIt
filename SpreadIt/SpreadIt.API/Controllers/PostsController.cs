@@ -36,7 +36,7 @@ namespace SpreadIt.API.Controllers
         [HttpGet]
         public IActionResult Get(int? id, string sort = "-CreatedDate",
             string fields = null,
-            int page = 1, int pageSize = 5)
+            int page = 1, int pageSize = 5, string userId = "")
         {
             try
             {
@@ -46,7 +46,7 @@ namespace SpreadIt.API.Controllers
                     if (post == null)
                         return NotFound();
                     else
-                        return Ok(_postFactory.CreatePost(post));
+                        return Ok(_postFactory.CreatePost(post, userId));
                 }
                 else
                 {
@@ -106,7 +106,7 @@ namespace SpreadIt.API.Controllers
                     return Ok(posts
                             .Skip(pageSize * (page - 1))
                             .Take(pageSize).ToList()
-                            .Select(a => _postFactory.CreateDataShapedObject(a, lstOfFields)));
+                            .Select(a => _postFactory.CreateDataShapedObject(a, userId, lstOfFields)));
                 }
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace SpreadIt.API.Controllers
                             }
                         }
 
-                        var newPost = _postFactory.CreatePost(result.Entity);
+                        var newPost = _postFactory.CreatePost(result.Entity, null);
                         var newPostLink = _linkGenerator.GetPathByAction(
                         HttpContext,
                         action: "Get",
@@ -206,7 +206,7 @@ namespace SpreadIt.API.Controllers
 
                     if (result.Status == RepositoryActionStatus.Updated)
                     {
-                        var newPost = _postFactory.CreatePost(result.Entity);
+                        var newPost = _postFactory.CreatePost(result.Entity, null);
                         var newPostLink = _linkGenerator.GetPathByAction(
                         HttpContext,
                         action: "Get",

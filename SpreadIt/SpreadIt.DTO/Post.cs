@@ -21,5 +21,7 @@ namespace SpreadIt.DTO
         public Account User { get; set; }
         public int TotalLikes { get; set; }
         public int TotalDisLikes { get; set; }
-    }   
+        public bool IsLiked { get; set; }
+        public bool IsDisLiked { get; set; }
+    }
 }

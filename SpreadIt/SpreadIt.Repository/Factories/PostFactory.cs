@@ -21,7 +21,7 @@ namespace SpreadIt.Repository.Factories
             _accountFactory = new AccountFactory();
         }
 
-        public DTO.Post CreatePost(Post post)
+        public DTO.Post CreatePost(Post post, string userId)
         {
             return new DTO.Post()
             {
@@ -44,9 +44,14 @@ namespace SpreadIt.Repository.Factories
 
                 TotalDisLikes = post.PostRates == null ? 0 :
                     post.PostRates.Where(a => a.Status == (byte)Constants.RatingStatus.Dislike).Count(),
+
+                IsLiked = !string.IsNullOrEmpty(userId) ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
+                    .Status == (byte)Constants.RatingStatus.Like : false,
+
+                IsDisLiked = !string.IsNullOrEmpty(userId) ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
+                    .Status == (byte)Constants.RatingStatus.Dislike : false,
             };
         }
-
 
         public Post CreatePost(DTO.Post post)
         {
@@ -64,9 +69,9 @@ namespace SpreadIt.Repository.Factories
             };
         }
 
-        public object CreateDataShapedObject(Post post, List<string> lstOfFields)
+        public object CreateDataShapedObject(Post post, string userId, List<string> lstOfFields)
         {
-            return CreateDataShapedObject(CreatePost(post), lstOfFields);
+            return CreateDataShapedObject(CreatePost(post, userId), lstOfFields);
         }
 
 

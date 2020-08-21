@@ -29,13 +29,13 @@ namespace SpreadIt.API.Controllers
 
 
         [HttpGet("{PostId}")]
-        public IActionResult Get(int PostId)
+        public IActionResult Get(int PostId, string userId)
         {
             try
             {
                 if (!PostId.Equals(null))
                     return Ok(
-                        _repository.GetCommentByPost(PostId).Select(a => _commentFactory.CreateComment(a)));
+                        _repository.GetCommentByPost(PostId).Select(a => _commentFactory.CreateComment(a, userId)));
                 else
                     return BadRequest();
             }
@@ -64,7 +64,7 @@ namespace SpreadIt.API.Controllers
 
                     if (result.Status == RepositoryActionStatus.Created)
                     {
-                        var newComment = _commentFactory.CreateComment(result.Entity);
+                        var newComment = _commentFactory.CreateComment(result.Entity, string.Empty);
 
                         return Created("", newComment);
                     }
@@ -99,7 +99,7 @@ namespace SpreadIt.API.Controllers
 
                     if (result.Status == RepositoryActionStatus.Updated)
                     {
-                        var newComment = _commentFactory.CreateComment(result.Entity);
+                        var newComment = _commentFactory.CreateComment(result.Entity, string.Empty);
 
                         return Ok(newComment);
                     }

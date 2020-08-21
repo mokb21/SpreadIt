@@ -16,7 +16,7 @@ namespace SpreadIt.Repository.Factories
             _accountFactory = new AccountFactory();
         }
 
-        public DTO.Comment CreateComment(Comment comment)
+        public DTO.Comment CreateComment(Comment comment, string userId)
         {
 
             return new DTO.Comment()
@@ -34,6 +34,12 @@ namespace SpreadIt.Repository.Factories
 
                 TotalDisLikes = comment.CommentRates == null ? 0 :
                     comment.CommentRates.Where(a => a.Status == (byte)Constants.RatingStatus.Dislike).Count(),
+
+                IsLiked = !string.IsNullOrEmpty(userId) ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?
+                    .Status == (byte)Constants.RatingStatus.Like : false,
+
+                IsDisLiked = !string.IsNullOrEmpty(userId) ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?
+                    .Status == (byte)Constants.RatingStatus.Dislike : false,
             };
         }
 
