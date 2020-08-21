@@ -13,12 +13,14 @@ namespace SpreadIt.Repository.Factories
         PostImagesFactory _imageFactory;
         CategoryFactory _categoryFactory;
         AccountFactory _accountFactory;
+        CommentFactory _commentFactory;
 
         public PostFactory()
         {
             _imageFactory = new PostImagesFactory();
             _categoryFactory = new CategoryFactory();
             _accountFactory = new AccountFactory();
+            _categoryFactory = new CategoryFactory();
         }
 
         public DTO.Post CreatePost(Post post, string userId)
@@ -50,6 +52,9 @@ namespace SpreadIt.Repository.Factories
 
                 IsDisLiked = !string.IsNullOrEmpty(userId) ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
                     .Status == (byte)Constants.RatingStatus.Dislike : false,
+
+                Comments = post.Comments != null && post.Comments.Count > 0 ? post.Comments
+                    .Select(a => _commentFactory.CreateComment(a, userId)).ToList() : new List<DTO.Comment>(),
             };
         }
 

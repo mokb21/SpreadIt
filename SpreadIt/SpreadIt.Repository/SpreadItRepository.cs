@@ -115,6 +115,7 @@ namespace SpreadIt.Repository
                     .Include(post => post.Category)
                     .Include(post => post.User)
                     .Include(post => post.PostRates)
+                    .Include(a => a.Comments)
                     .Where(a => !a.IsDeleted).FirstOrDefault(e => e.Id == id);
             }
             catch (Exception ex)
@@ -131,7 +132,8 @@ namespace SpreadIt.Repository
                 return _ctx.Posts.Include(a => a.PostImages)
                     .Include(a => a.Category)
                     .Include(a => a.User)
-                    .Include(post => post.PostRates)
+                    .Include(a => a.PostRates)
+                    .Include(a => a.Comments)
                     .Where(a => !a.IsBlocked && !a.IsDeleted);
             }
             catch (Exception ex)
