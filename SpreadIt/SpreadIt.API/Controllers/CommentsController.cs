@@ -35,7 +35,8 @@ namespace SpreadIt.API.Controllers
             {
                 if (!PostId.Equals(null))
                     return Ok(
-                        _repository.GetCommentByPost(PostId).Select(a => _commentFactory.CreateComment(a, userId)));
+                        _repository.GetCommentByPost(PostId).Select(a => _commentFactory
+                            .CreateComment(a, userId)).OrderByDescending(a => a.CreatedDate));
                 else
                     return BadRequest();
             }
