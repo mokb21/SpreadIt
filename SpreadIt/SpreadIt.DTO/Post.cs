@@ -24,6 +24,7 @@ namespace SpreadIt.DTO
         public bool IsLiked { get; set; }
         public bool IsDisLiked { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
+        public string DateFormated { get; set; }
 
     }
 }

@@ -18,5 +18,7 @@ namespace SpreadIt.DTO
         public int TotalDisLikes { get; set; }
         public bool IsLiked { get; set; }
         public bool IsDisLiked { get; set; }
+        public string DateFormated { get; set; }
+
     }
 }

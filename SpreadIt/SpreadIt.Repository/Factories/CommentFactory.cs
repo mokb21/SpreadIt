@@ -40,6 +40,10 @@ namespace SpreadIt.Repository.Factories
 
                 IsDisLiked = !string.IsNullOrEmpty(userId) ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?
                     .Status == (byte)Constants.RatingStatus.Dislike : false,
+
+                CreatedDate = comment.CreatedDate,
+
+                DateFormated = comment.CreatedDate.ToString("yyyy-MM-dd | HH:mm")
             };
         }
 

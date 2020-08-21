@@ -55,6 +55,9 @@ namespace SpreadIt.Repository.Factories
 
                 Comments = post.Comments != null && post.Comments.Count > 0 ? post.Comments
                     .Select(a => _commentFactory.CreateComment(a, userId)).ToList() : new List<DTO.Comment>(),
+
+                DateFormated = post.LastUpdatedDate.HasValue ? post.LastUpdatedDate.Value.ToString("yyyy-MM-dd | HH:mm")
+                    :post.CreatedDate.ToString("yyyy-MM-dd | HH:mm")
             };
         }
 
