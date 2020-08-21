@@ -55,7 +55,8 @@ namespace SpreadIt.Repository.Factories
                     .Status == (byte)Constants.RatingStatus.Dislike : false,
 
                 Comments = post.Comments != null && post.Comments.Count > 0 ? post.Comments
-                    .Select(a => _commentFactory.CreateComment(a, userId)).ToList() : new List<DTO.Comment>(),
+                    .Select(a => _commentFactory.CreateComment(a, userId)).OrderByDescending(a=>a.CreatedDate).ToList() 
+                    : new List<DTO.Comment>(),
 
                 DateFormated = post.LastUpdatedDate.HasValue ? post.LastUpdatedDate.Value.ToString("yyyy-MM-dd | HH:mm")
                     :post.CreatedDate.ToString("yyyy-MM-dd | HH:mm")
