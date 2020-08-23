@@ -225,13 +225,23 @@ namespace SpreadIt.Repository
         #endregion
 
         #region Comment
-        public List<Comment> GetCommentByPost(int PostId)
+        public List<Comment> GetCommentByPost(int PostId,string userId)
         {
             try
             {
-                return _ctx.Comments.Include(a => a.User)
-                    .Include(a => a.CommentRates)
-                    .Where(a => a.PostId == PostId && !a.IsBlocked && !a.IsDeleted).ToList();
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return _ctx.Comments.Include(a => a.User)
+                        .Include(a => a.CommentRates)
+                        .Where(a => a.PostId == PostId && !a.IsDeleted).ToList();
+                }
+                else
+                {
+                    return _ctx.Comments.Include(a => a.User)
+                       .Include(a => a.CommentRates)
+                       .Where(a => a.PostId == PostId && !a.IsDeleted && !a.IsBlocked).ToList();
+                }
+                
             }
             catch (Exception ex)
             {

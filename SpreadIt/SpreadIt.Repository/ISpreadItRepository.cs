@@ -27,7 +27,7 @@ namespace SpreadIt.Repository
         #endregion
 
         #region Comments
-        List<Comment> GetCommentByPost(int id);
+        List<Comment> GetCommentByPost(int id, string userId);
         RepositoryActionResult<Comment> InsertComment(Comment comment);
         RepositoryActionResult<Comment> UpdateComment(Comment comment);
         RepositoryActionResult<Comment> DeleteComment(int id);
