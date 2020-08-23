@@ -129,12 +129,25 @@ namespace SpreadIt.Repository
         {
             try
             {
-                return _ctx.Posts.Include(a => a.PostImages)
-                    .Include(a => a.Category)
-                    .Include(a => a.User)
-                    .Include(a => a.PostRates)
-                    .Include(a => a.Comments)
-                    .Where(a => (!string.IsNullOrEmpty(userId) && !a.IsBlocked) && !a.IsDeleted);
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return _ctx.Posts.Include(a => a.PostImages)
+                        .Include(a => a.Category)
+                        .Include(a => a.User)
+                        .Include(a => a.PostRates)
+                        .Include(a => a.Comments)
+                        .Where(a => !a.IsDeleted);
+                }
+                else
+                {
+                    return _ctx.Posts.Include(a => a.PostImages)
+                        .Include(a => a.Category)
+                        .Include(a => a.User)
+                        .Include(a => a.PostRates)
+                        .Include(a => a.Comments)
+                        .Where(a => !a.IsDeleted && !a.IsBlocked);
+                }
+
             }
             catch (Exception ex)
             {
