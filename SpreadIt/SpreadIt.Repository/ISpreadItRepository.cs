@@ -20,7 +20,7 @@ namespace SpreadIt.Repository
 
         #region Posts
         Post GetPost(int id);
-        IQueryable<Post> GetPosts();
+        IQueryable<Post> GetPosts(string userId);
         RepositoryActionResult<Post> InsertPost(Post post);
         RepositoryActionResult<Post> UpdatePost(Post post);
         RepositoryActionResult<Post> DeletePost(int id);

@@ -57,7 +57,7 @@ namespace SpreadIt.API.Controllers
                         lstOfFields = fields.ToLower().Split(',').ToList();
                     }
 
-                    var posts = _repository.GetPosts();
+                    var posts = _repository.GetPosts(userId);
 
                     posts = posts.ApplySort(sort);
 

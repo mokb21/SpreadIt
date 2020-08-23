@@ -125,7 +125,7 @@ namespace SpreadIt.Repository
             }
         }
 
-        public IQueryable<Post> GetPosts()
+        public IQueryable<Post> GetPosts(string userId)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace SpreadIt.Repository
                     .Include(a => a.User)
                     .Include(a => a.PostRates)
                     .Include(a => a.Comments)
-                    .Where(a => !a.IsBlocked && !a.IsDeleted);
+                    .Where(a => (!string.IsNullOrEmpty(userId) && !a.IsBlocked) && !a.IsDeleted);
             }
             catch (Exception ex)
             {
