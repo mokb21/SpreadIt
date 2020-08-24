@@ -57,5 +57,48 @@ namespace SpreadIt.API.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult Post([FromBody]DTO.ReportCategory category)
+        {
+            try
+            {
+                if (category != null)
+                {
+                    var _category = _reportsCategoriesFactory.CreateReportCategory(category);
+                    var result = _repository.InsertReportCategory(_category);
+
+                    if (result.Status == RepositoryActionStatus.Created)
+                    {
+                        var newCategory = _reportsCategoriesFactory.CreateReportCategory(result.Entity);
+                        var newCommentLink = _linkGenerator.GetPathByAction(
+                        HttpContext,
+                        action: "Post",
+                        controller: "ReportsCategories",
+                        values: new
+                        {
+                            id = newCategory.Id
+                        });
+
+                        return Created(newCommentLink, newCategory);
+                    }
+                    else
+                        return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _repository.InsertMessageLog(new Repository.Models.MessageLog
+                {
+                    Project = (byte)ProjectType.API,
+                    Message = ex.Message,
+                    Method = "PortReportsCategories"
+                });
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
     }
 }

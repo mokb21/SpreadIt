@@ -564,6 +564,30 @@ namespace SpreadIt.Repository
                 return null;
             }
         }
+
+        public RepositoryActionResult<ReportCategory> InsertReportCategory(ReportCategory reportCategory)
+        {
+            try
+            {
+                _ctx.ReportCategories.Add(reportCategory);
+                var result = _ctx.SaveChanges();
+                if (result > 0)
+                {
+                    var AddedReportCategory = GetReportCategory(reportCategory.Id);
+                    return new RepositoryActionResult<ReportCategory>(AddedReportCategory, RepositoryActionStatus.Created);
+                }
+                else
+                {
+                    return new RepositoryActionResult<ReportCategory>(reportCategory, RepositoryActionStatus.NothingModified, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertMessageLog(new MessageLog { Project = (byte)ProjectType.Reporsitory, Method = "InsertReportCategory", Message = ex.Message });
+                return new RepositoryActionResult<ReportCategory>(null, RepositoryActionStatus.Error, ex);
+            }
+        }
         #endregion Reports Categories
 
         #region Posts Images

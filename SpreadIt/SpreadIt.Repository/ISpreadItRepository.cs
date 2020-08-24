@@ -57,6 +57,7 @@ namespace SpreadIt.Repository
         #region Reports Categories
         IQueryable<ReportCategory> GetReportCategories();
         ReportCategory GetReportCategory(int id);
+        RepositoryActionResult<ReportCategory> InsertReportCategory(ReportCategory reportCategory);
         #endregion Reports Categories
 
         #region Posts Images
