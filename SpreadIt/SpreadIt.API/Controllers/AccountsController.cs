@@ -173,6 +173,10 @@ namespace SpreadIt.API.Controllers
                         status = _repository.InsertUserLocation(userLocations);
                     }
                 }
+                else
+                {
+                    status = RepositoryActionStatus.Created;
+                }
 
                 if (status == RepositoryActionStatus.Created)
                 {
