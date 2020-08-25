@@ -93,7 +93,7 @@ namespace SpreadIt.API.Controllers
                 {
                     Project = (byte)ProjectType.API,
                     Message = ex.Message,
-                    Method = "PortReportsCategories"
+                    Method = "PostReportsCategories"
                 });
 
                 return StatusCode(StatusCodes.Status500InternalServerError);

@@ -158,7 +158,7 @@ namespace SpreadIt.API.Controllers
                 //Adding UserLocations
                 RepositoryActionStatus status = RepositoryActionStatus.Error;
                 ApplicationUser userAdded = null;
-                if (result.Succeeded)
+                if (result.Succeeded && !string.IsNullOrEmpty(account.Locations))
                 {
                     userAdded = await _userManager.FindByNameAsync(account.UserName);
 
