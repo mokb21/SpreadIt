@@ -166,16 +166,19 @@ namespace SpreadIt.API.Controllers
                     {
                         List<UserLocation> userLocations = new List<UserLocation>();
 
-                        var locations = JsonConvert.DeserializeObject<DTO.Location[]>(account.Locations);
+                        var locationsIIds = JsonConvert.DeserializeObject<List<int>>(account.Locations);
+
+                        List<DTO.Location> locations = new List<DTO.Location>();
+                        locations.AddRange(locationsIIds.Select(a => new DTO.Location() { Id = a }));
 
                         userLocations.AddRange(locations.ToList()
                             .Select(a => new UserLocation() { LocationId = a.Id, UserId = userAdded.Id }));
                         status = _repository.InsertUserLocation(userLocations);
                     }
-                }
-                else
-                {
-                    status = RepositoryActionStatus.Created;
+                    else
+                    {
+                        status = RepositoryActionStatus.Created;
+                    }
                 }
 
                 if (status == RepositoryActionStatus.Created)
