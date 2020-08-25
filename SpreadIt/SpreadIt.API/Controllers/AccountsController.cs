@@ -135,7 +135,7 @@ namespace SpreadIt.API.Controllers
             try
             {
                 //Adding User
-                if (Request.Form.Files != null)
+                if (Request.Form.Files != null && Request.Form.Files.Count > 0)
                 {
                     var file = Request.Form.Files[0];
 
