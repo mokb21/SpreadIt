@@ -35,11 +35,11 @@ namespace SpreadIt.Repository.Factories
                 TotalDisLikes = comment.CommentRates == null ? 0 :
                     comment.CommentRates.Where(a => a.Status == (byte)Constants.RatingStatus.Dislike).Count(),
 
-                IsLiked = !string.IsNullOrEmpty(userId) ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?
-                    .Status == (byte)Constants.RatingStatus.Like : false,
+                IsLiked = !string.IsNullOrEmpty(userId) && comment.CommentRates != null 
+                    ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?.Status == (byte)Constants.RatingStatus.Like : false,
 
-                IsDisLiked = !string.IsNullOrEmpty(userId) ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?
-                    .Status == (byte)Constants.RatingStatus.Dislike : false,
+                IsDisLiked = !string.IsNullOrEmpty(userId) && comment.CommentRates != null 
+                    ? comment.CommentRates.FirstOrDefault(a => a.UserId == userId)?.Status == (byte)Constants.RatingStatus.Dislike : false,
 
                 CreatedDate = comment.CreatedDate,
 

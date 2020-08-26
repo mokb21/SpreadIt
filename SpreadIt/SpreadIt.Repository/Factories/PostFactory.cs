@@ -48,10 +48,10 @@ namespace SpreadIt.Repository.Factories
                 TotalDisLikes = post.PostRates == null ? 0 :
                     post.PostRates.Where(a => a.Status == (byte)Constants.RatingStatus.Dislike).Count(),
 
-                IsLiked = !string.IsNullOrEmpty(userId) ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
+                IsLiked = !string.IsNullOrEmpty(userId) && post.PostRates != null ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
                     .Status == (byte)Constants.RatingStatus.Like : false,
 
-                IsDisLiked = !string.IsNullOrEmpty(userId) ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
+                IsDisLiked = !string.IsNullOrEmpty(userId) && post.PostRates != null ? post.PostRates.FirstOrDefault(a => a.UserId == userId)?
                     .Status == (byte)Constants.RatingStatus.Dislike : false,
 
                 Comments = post.Comments != null && post.Comments.Count > 0 ? post.Comments
