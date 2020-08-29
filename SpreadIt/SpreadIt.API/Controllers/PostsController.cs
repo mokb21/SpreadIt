@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using SpreadIt.Repository.Models;
+using System.Drawing;
 
 namespace SpreadIt.API.Controllers
 {
@@ -155,10 +156,21 @@ namespace SpreadIt.API.Controllers
 
                             var ImageResult = _repository.InsertImage(image);
 
+
                             using (var stream = new FileStream(fullPath, FileMode.Create))
                             {
                                 file.CopyTo(stream);
                             }
+
+                            Image resizedImage;
+
+                            using (var img = Image.FromFile(fullPath))
+                            {
+                                resizedImage = (Image)ImageResize.ResizeImage(img, 800, 800);
+                            }
+
+                            System.IO.File.Delete(fullPath);
+                            resizedImage.Save(fullPath);
                         }
 
                         var newPost = _postFactory.CreatePost(result.Entity, null);
