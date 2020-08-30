@@ -166,7 +166,7 @@ namespace SpreadIt.API.Controllers
 
                             using (var img = Image.FromFile(fullPath))
                             {
-                                resizedImage = (Image)ImageResize.ResizeImage(img, img.Height / 2, img.Width / 2);
+                                resizedImage = (Image)ImageResize.ResizeImage(img, img.Height / 3, img.Width / 3);
                             }
 
                             System.IO.File.Delete(fullPath);
