@@ -249,7 +249,8 @@ namespace SpreadIt.API.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("{id:int}")]
         public IActionResult Delete(int id)
         {
             try
