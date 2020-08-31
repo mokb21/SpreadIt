@@ -15,6 +15,7 @@ using SpreadIt.Repository.Factories;
 using System.Net.Http.Headers;
 using System.IO;
 using Newtonsoft.Json;
+using System.Drawing;
 
 namespace SpreadIt.API.Controllers
 {
@@ -149,6 +150,16 @@ namespace SpreadIt.API.Controllers
                     {
                         file.CopyTo(stream);
                     }
+
+                    Image resizedImage;
+
+                    using (var img = Image.FromFile(fullPath))
+                    {
+                        resizedImage = (Image)ImageResize.ResizeImage(img, img.Height / 3, img.Width / 3);
+                    }
+
+                    System.IO.File.Delete(fullPath);
+                    resizedImage.Save(fullPath);
                 }
 
                 var user = _accountFactory.CreateAccount(account);
@@ -231,10 +242,21 @@ namespace SpreadIt.API.Controllers
                         var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/{Constants.SpreadItConstants.UserImagesFolderGet}//";
                         account.Image = baseUrl + fileName;
 
+
                         using (var stream = new FileStream(fullPath, FileMode.Create))
                         {
                             file.CopyTo(stream);
                         }
+
+                        Image resizedImage;
+
+                        using (var img = Image.FromFile(fullPath))
+                        {
+                            resizedImage = (Image)ImageResize.ResizeImage(img, img.Height / 3, img.Width / 3);
+                        }
+
+                        System.IO.File.Delete(fullPath);
+                        resizedImage.Save(fullPath);
                     }
 
                     var userDb = _accountFactory.CreateAccount(account);
@@ -254,13 +276,18 @@ namespace SpreadIt.API.Controllers
                         //Update UserLocations
                         if (user != null)
                         {
+
                             List<UserLocation> userLocations = new List<UserLocation>();
 
-                            var locations = JsonConvert.DeserializeObject<DTO.Location[]>(account.Locations);
+                            var locationsIIds = JsonConvert.DeserializeObject<List<int>>(account.Locations);
+
+                            List<DTO.Location> locations = new List<DTO.Location>();
+                            locations.AddRange(locationsIIds.Select(a => new DTO.Location() { Id = a }));
 
                             userLocations.AddRange(locations.ToList()
                                 .Select(a => new UserLocation() { LocationId = a.Id, UserId = user.Id }));
-                            status = _repository.UpdateUserLocation(userLocations, user.Id);
+                            status = _repository.UpdateUserLocation(userLocations,user.Id);
+
                         }
                     }
 
