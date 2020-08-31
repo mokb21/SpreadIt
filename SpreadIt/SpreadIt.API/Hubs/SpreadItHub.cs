@@ -10,7 +10,7 @@ namespace SpreadIt.API.Hubs
     {
         public async Task SendMessage()
         {
-            await Clients.All.SendAsync("ReceiveMessage", "Hello World");
+            await Clients.All.SendAsync("ReceiveMessage", "New Post Added !!");
         }
     }
 }
