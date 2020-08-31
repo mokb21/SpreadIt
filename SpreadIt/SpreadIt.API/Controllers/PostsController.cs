@@ -39,12 +39,13 @@ namespace SpreadIt.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int? id, string sort = "-CreatedDate",
+        public async Task<IActionResult> Get(int? id, string sort = "-CreatedDate",
             string fields = null,
             int page = 1, int pageSize = 5, string userId = "")
         {
             try
             {
+                await hub.SendMessage();
                 if (id.HasValue)
                 {
                     var post = _repository.GetPost(id.Value);
