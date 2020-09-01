@@ -115,7 +115,7 @@ namespace SpreadIt.Repository
                     .Include(post => post.Category)
                     .Include(post => post.User)
                     .Include(post => post.PostRates)
-                    .Include(a => a.Comments)
+                    .Include(a => a.Comments).ThenInclude(a => a.CommentRates)
                     .Where(a => !a.IsDeleted).FirstOrDefault(e => e.Id == id);
             }
             catch (Exception ex)
@@ -135,7 +135,7 @@ namespace SpreadIt.Repository
                         .Include(a => a.Category)
                         .Include(a => a.User)
                         .Include(a => a.PostRates)
-                        .Include(a => a.Comments)
+                        .Include(a => a.Comments).ThenInclude(a => a.CommentRates)
                         .Where(a => !a.IsDeleted);
                 }
                 else
@@ -144,7 +144,7 @@ namespace SpreadIt.Repository
                         .Include(a => a.Category)
                         .Include(a => a.User)
                         .Include(a => a.PostRates)
-                        .Include(a => a.Comments)
+                        .Include(a => a.Comments).ThenInclude(a => a.CommentRates)
                         .Where(a => !a.IsDeleted && !a.IsBlocked);
                 }
 
@@ -225,7 +225,7 @@ namespace SpreadIt.Repository
         #endregion
 
         #region Comment
-        public List<Comment> GetCommentByPost(int PostId,string userId)
+        public List<Comment> GetCommentByPost(int PostId, string userId)
         {
             try
             {
@@ -241,7 +241,7 @@ namespace SpreadIt.Repository
                        .Include(a => a.CommentRates)
                        .Where(a => a.PostId == PostId && !a.IsDeleted && !a.IsBlocked).ToList();
                 }
-                
+
             }
             catch (Exception ex)
             {

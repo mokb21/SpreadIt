@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using SpreadIt.Repository.Models;
 using System.Drawing;
-using SpreadIt.API.Hubs;
 
 namespace SpreadIt.API.Controllers
 {
@@ -27,15 +26,12 @@ namespace SpreadIt.API.Controllers
         PostFactory _postFactory = new PostFactory();
         PostImagesFactory _imageFactory = new PostImagesFactory();
         readonly LinkGenerator _linkGenerator;
-        SpreadItHub hub;
 
         public PostsController(LinkGenerator linkGenerator)
         {
             _repository = new SpreadItRepository(
                 new Repository.Models.SpreadItContext());
             _linkGenerator = linkGenerator;
-
-            hub = new SpreadItHub();
         }
 
         [HttpGet]
@@ -45,7 +41,6 @@ namespace SpreadIt.API.Controllers
         {
             try
             {
-                await hub.SendMessage();
                 if (id.HasValue)
                 {
                     var post = _repository.GetPost(id.Value);
@@ -187,8 +182,6 @@ namespace SpreadIt.API.Controllers
                         {
                             id = newPost.Id
                         });
-
-                        await hub.SendMessage();
 
                         return Created(newPostLink, newPost);
                     }
